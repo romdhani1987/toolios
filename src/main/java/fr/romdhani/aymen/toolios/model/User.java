@@ -13,6 +13,11 @@ public class User implements Serializable {
     private String login ;
     private String email ;
     private String passWord;
+    private Adress adress;
+    private Group group;
+    private User header ;
+    private List<UserFunction> functionList ;
+    private List<UserResponsabilty> responsabiltyList ;
 
     public Adress getAdress() {
         return adress;
@@ -30,11 +35,7 @@ public class User implements Serializable {
         this.group = group;
     }
 
-    private Adress adress;
-    private Group group;
-    private User header ;
-    private List<UserFunction> functionList ;
-    private List<UserResponsabilty> responsabiltyList ;
+
 
     public User() {
     }
