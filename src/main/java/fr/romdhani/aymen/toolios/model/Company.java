@@ -1,6 +1,7 @@
 package fr.romdhani.aymen.toolios.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -9,6 +10,15 @@ import java.io.Serializable;
 public class Company implements Serializable {
     private String name ;
     private Long serial ;
+    private List<Group> groupList;
+
+    public List<Group> getGroupList() {
+        return groupList;
+    }
+
+    public void setGroupList(List<Group> groupList) {
+        this.groupList = groupList;
+    }
 
     public Long getSerial() {
         return serial;

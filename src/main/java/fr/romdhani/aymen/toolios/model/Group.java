@@ -10,6 +10,15 @@ public class Group implements Serializable {
     private String name ;
     private Long id ;
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    private Company company;
     public Group() {
     }
 

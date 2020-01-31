@@ -13,6 +13,25 @@ public class User implements Serializable {
     private String login ;
     private String email ;
     private String passWord;
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    private Adress adress;
+    private Group group;
     private User header ;
     private List<UserFunction> functionList ;
     private List<UserResponsabilty> responsabiltyList ;
