@@ -35,8 +35,6 @@ public class User implements Serializable {
         this.group = group;
     }
 
-
-
     public User() {
     }
 
