@@ -8,15 +8,60 @@ import java.io.Serializable;
  */
 public class Company implements Serializable {
     private String name ;
+    private Long serial ;
+
+    public Long getSerial() {
+        return serial;
+    }
+
+    public void setSerial(Long serial) {
+        this.serial = serial;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
+
+    public Long getSIREN() {
+        return SIREN;
+    }
+
+    public void setSIREN(Long SIREN) {
+        this.SIREN = SIREN;
+    }
+
+    public Long getSIRET() {
+        return SIRET;
+    }
+
+    public void setSIRET(Long SIRET) {
+        this.SIRET = SIRET;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    private Adress adress;
+    private Long SIREN;
+    private Long SIRET;
+    private Activity activity;
     private Long id ;
 
     public Company() {
     }
 
-    public Company(String name, Long id) {
+    public Company(String name) {
         this.name = name;
-        this.id = id;
-    }
+            }
 
     public String getName() {
         return name;
