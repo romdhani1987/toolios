@@ -1,6 +1,7 @@
 package fr.romdhani.aymen.toolios.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -10,6 +11,10 @@ public class UserResponsabilty implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name ;
     private Long id ;
+    private User user;
+    private Machine machine;
+    private Date startDate;
+    private Date endDate;
 
     public UserResponsabilty() {
     }

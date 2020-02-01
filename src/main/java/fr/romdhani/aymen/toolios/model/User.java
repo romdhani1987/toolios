@@ -1,6 +1,7 @@
 package fr.romdhani.aymen.toolios.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,9 +18,17 @@ public class User implements Serializable {
     private String passWord;
     private Adress adress;
     private Group group;
-
+    private List<User> contactList;
     private List<UserFunction> functionList ;
     private List<UserResponsabilty> responsabiltyList ;
+
+    public List<User> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(List<User> contactList) {
+        this.contactList = contactList;
+    }
 
     public Adress getAdress() {
         return adress;
