@@ -13,7 +13,9 @@ public class User implements Serializable {
     private String lName;
     private String login;
     private String email;
+    private String phoneNumber;
     private String passWord;
+
     private Adress adress;
     private Group group;
     private List<User> contactList;
