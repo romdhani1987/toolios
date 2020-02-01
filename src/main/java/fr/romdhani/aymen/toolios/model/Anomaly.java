@@ -1,6 +1,8 @@
 package fr.romdhani.aymen.toolios.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 /**
  *
  * @author aromdhani
@@ -12,7 +14,7 @@ public class Anomaly implements Serializable {
     private Long id ;
     private  User author;
     private  User assigned;
-
+    private Date observedDate;
     public Anomaly() {
     }
 
