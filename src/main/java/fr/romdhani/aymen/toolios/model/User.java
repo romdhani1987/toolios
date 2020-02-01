@@ -1,7 +1,6 @@
 package fr.romdhani.aymen.toolios.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class User implements Serializable {
     private Group group;
     private List<User> contactList;
     private List<UserFunction> functionList ;
-    private List<UserResponsabilty> responsabiltyList ;
+    private List<UserResponsabilty> responsibilityList;
 
     public List<User> getContactList() {
         return contactList;
@@ -110,11 +109,11 @@ public class User implements Serializable {
         this.functionList = functionList;
     }
 
-    public List<UserResponsabilty> getResponsabiltyList() {
-        return responsabiltyList;
+    public List<UserResponsabilty> getResponsibilityList() {
+        return responsibilityList;
     }
 
-    public void setResponsabiltyList(List<UserResponsabilty> responsabiltyList) {
-        this.responsabiltyList = responsabiltyList;
+    public void setResponsibilityList(List<UserResponsabilty> responsabilityList) {
+        this.responsibilityList = responsabilityList;
     }
 }
