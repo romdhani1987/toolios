@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author aromdhani
  */
-public class UserResponsabilty implements Serializable {
+public class UserResponsibility implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name ;
     private Long id ;
@@ -16,10 +16,10 @@ public class UserResponsabilty implements Serializable {
     private Date startDate;
     private Date endDate;
 
-    public UserResponsabilty() {
+    public UserResponsibility() {
     }
 
-    public UserResponsabilty(String name, Long id) {
+    public UserResponsibility(String name, Long id) {
         this.name = name;
         this.id = id;
     }

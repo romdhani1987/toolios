@@ -18,7 +18,7 @@ public class User implements Serializable {
     private Group group;
     private List<User> contactList;
     private List<UserFunction> functionList;
-    private List<UserResponsabilty> responsibilityList;
+    private List<UserResponsibility> responsibilityList;
     private List<UserProject> userProjectList;
 
     public List<UserProject> getUserProjectList() {
@@ -117,11 +117,11 @@ public class User implements Serializable {
         this.functionList = functionList;
     }
 
-    public List<UserResponsabilty> getResponsibilityList() {
+    public List<UserResponsibility> getResponsibilityList() {
         return responsibilityList;
     }
 
-    public void setResponsibilityList(List<UserResponsabilty> responsabilityList) {
+    public void setResponsibilityList(List<UserResponsibility> responsabilityList) {
         this.responsibilityList = responsabilityList;
     }
 }
