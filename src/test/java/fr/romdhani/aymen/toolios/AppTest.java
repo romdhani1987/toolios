@@ -1,5 +1,6 @@
 package fr.romdhani.aymen.toolios;
 
+import fr.romdhani.aymen.toolios.orm.User;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -33,6 +34,7 @@ public class AppTest
      */
     public void testApp()
     {
+        User user= new User();
         assertTrue( true );
     }
 }
