@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author aromdhani
  */
 public class Action implements Serializable {
     private static final long serialVersionUID = 1L;
     private String title;
-    private String description ;
-    private Long id ;
-    private  User author;
+    private String description;
+    private Long id;
+    private User author;
     private Date startDate;
     private Date plannedDate;
 
@@ -40,7 +39,7 @@ public class Action implements Serializable {
         this.title = name;
         this.description = description;
         this.author = author;
-            }
+    }
 
     public String getTitle() {
         return title;

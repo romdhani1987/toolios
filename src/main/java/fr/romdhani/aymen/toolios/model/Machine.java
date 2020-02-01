@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @author aromdhani
  */
 public class Machine implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name ;
-    private Long id ;
-    private  MachineLocation machineLocation;
-    private MachineType machineType ;
+    private String name;
+    private Long id;
+    private MachineLocation machineLocation;
+    private MachineType machineType;
     private User responsible;
 
     public Machine(String name, Long id) {

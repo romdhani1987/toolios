@@ -4,21 +4,20 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @author aromdhani
  */
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String fName ;
-    private String lName ;
-    private String login ;
-    private String email ;
+    private String fName;
+    private String lName;
+    private String login;
+    private String email;
     private String passWord;
     private Adress adress;
     private Group group;
     private List<User> contactList;
-    private List<UserFunction> functionList ;
+    private List<UserFunction> functionList;
     private List<UserResponsabilty> responsibilityList;
 
     public List<User> getContactList() {
@@ -101,7 +100,7 @@ public class User implements Serializable {
         this.passWord = passWord;
     }
 
-     public List<UserFunction> getFunctionList() {
+    public List<UserFunction> getFunctionList() {
         return functionList;
     }
 

@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @author aromdhani
  */
 public class Group implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name ;
-    private Long id ;
+    private String name;
+    private Long id;
     private Company company;
     private List<User> userList;
     private List<Group> underGroupList;
     private GroupActivity groupActivity;
-    private User header ;
+    private User header;
 
     public List<Group> getUnderGroupList() {
         return underGroupList;

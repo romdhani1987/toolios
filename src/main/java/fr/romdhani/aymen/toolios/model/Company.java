@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @author aromdhani
  */
 public class Company implements Serializable {
