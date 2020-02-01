@@ -8,6 +8,8 @@ import java.util.List;
  * @author aromdhani
  */
 public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String fName ;
     private String lName ;
     private String login ;

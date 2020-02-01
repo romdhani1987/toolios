@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @author aromdhani
  */
 public class UserResponsabilty implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name ;
     private Long id ;
 

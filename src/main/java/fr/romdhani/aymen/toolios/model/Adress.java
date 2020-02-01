@@ -3,7 +3,7 @@ package fr.romdhani.aymen.toolios.model;
 import java.io.Serializable;
 
 public class Adress implements Serializable {
-
+    private static final long serialVersionUID = 1L;
     private String	street;
     private String	code;
     private String	city;

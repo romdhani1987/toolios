@@ -3,6 +3,7 @@ package fr.romdhani.aymen.toolios.model;
 import java.io.Serializable;
 
 public class Activity implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name ;
 
     public Activity() {
