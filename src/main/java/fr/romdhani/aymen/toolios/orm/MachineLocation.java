@@ -1,23 +1,14 @@
-package fr.romdhani.aymen.toolios.model;
+package fr.romdhani.aymen.toolios.orm;
 
 import java.io.Serializable;
 
 /**
- *
  * @author aromdhani
  */
-public class UserFunction  implements Serializable {
+public class MachineLocation implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name ;
-    private Long id ;
-
-    public UserFunction() {
-    }
-
-    public UserFunction(String name, Long id) {
-        this.name = name;
-        this.id = id;
-    }
+    private String name;
+    private Long id;
 
     public String getName() {
         return name;
@@ -32,6 +23,14 @@ public class UserFunction  implements Serializable {
     }
 
     public void setId(Long id) {
+        this.id = id;
+    }
+
+    public MachineLocation() {
+    }
+
+    public MachineLocation(String name, Long id) {
+        this.name = name;
         this.id = id;
     }
 }

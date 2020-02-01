@@ -1,4 +1,4 @@
-package fr.romdhani.aymen.toolios.model;
+package fr.romdhani.aymen.toolios.orm;
 
 import java.io.Serializable;
 

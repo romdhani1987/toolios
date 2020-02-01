@@ -1,7 +1,6 @@
-package fr.romdhani.aymen.toolios.model;
+package fr.romdhani.aymen.toolios.orm;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author aromdhani

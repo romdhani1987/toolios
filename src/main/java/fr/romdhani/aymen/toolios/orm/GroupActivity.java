@@ -1,4 +1,4 @@
-package fr.romdhani.aymen.toolios.model;
+package fr.romdhani.aymen.toolios.orm;
 
 public enum GroupActivity {
     APPLICATION("application"), DIRECTION("direction"), RESEARCH("research"), SOFTWARE("software"), COMMERCIAL("commercial");
