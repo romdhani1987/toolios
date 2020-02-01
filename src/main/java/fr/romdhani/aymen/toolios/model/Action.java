@@ -15,7 +15,7 @@ public class Action implements Serializable {
     private  User author;
     private Date startDate;
     private Date plannedDate;
-    
+
     public Date getStartDate() {
         return startDate;
     }
