@@ -12,7 +12,11 @@ public class Company implements Serializable {
     private String name ;
     private Long serial ;
     private List<Group> groupList;
-
+    private Adress adress;
+    private Long SIREN;
+    private Long SIRET;
+    private Activity activity;
+    private Long id ;
     public List<Group> getGroupList() {
         return groupList;
     }
@@ -60,12 +64,6 @@ public class Company implements Serializable {
     public void setActivity(Activity activity) {
         this.activity = activity;
     }
-
-    private Adress adress;
-    private Long SIREN;
-    private Long SIRET;
-    private Activity activity;
-    private Long id ;
 
     public Company() {
     }

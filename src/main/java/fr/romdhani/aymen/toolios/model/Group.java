@@ -1,6 +1,7 @@
 package fr.romdhani.aymen.toolios.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -10,6 +11,8 @@ public class Group implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name ;
     private Long id ;
+    private Company company;
+    private List<User> userList;
 
     public Company getCompany() {
         return company;
@@ -19,7 +22,14 @@ public class Group implements Serializable {
         this.company = company;
     }
 
-    private Company company;
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
     public Group() {
     }
 
