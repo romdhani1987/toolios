@@ -17,7 +17,7 @@ public class User implements Serializable {
     private String passWord;
     private Adress adress;
     private Group group;
-    private User header ;
+
     private List<UserFunction> functionList ;
     private List<UserResponsabilty> responsabiltyList ;
 
@@ -93,15 +93,7 @@ public class User implements Serializable {
         this.passWord = passWord;
     }
 
-    public User getHeader() {
-        return header;
-    }
-
-    public void setHeader(User header) {
-        this.header = header;
-    }
-
-    public List<UserFunction> getFunctionList() {
+     public List<UserFunction> getFunctionList() {
         return functionList;
     }
 

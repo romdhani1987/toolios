@@ -13,8 +13,17 @@ public class Group implements Serializable {
     private Long id ;
     private Company company;
     private List<User> userList;
+    private List<Group> underGroupList;
     private GroupActivity groupActivity;
     private User header ;
+
+    public List<Group> getUnderGroupList() {
+        return underGroupList;
+    }
+
+    public void setUnderGroupList(List<Group> underGroupList) {
+        this.underGroupList = underGroupList;
+    }
 
     public User getHeader() {
         return header;
