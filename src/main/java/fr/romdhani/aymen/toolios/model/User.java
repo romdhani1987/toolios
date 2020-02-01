@@ -19,6 +19,15 @@ public class User implements Serializable {
     private List<User> contactList;
     private List<UserFunction> functionList;
     private List<UserResponsabilty> responsibilityList;
+    private List<UserProject> userProjectList;
+
+    public List<UserProject> getUserProjectList() {
+        return userProjectList;
+    }
+
+    public void setUserProjectList(List<UserProject> userProjectList) {
+        this.userProjectList = userProjectList;
+    }
 
     public List<User> getContactList() {
         return contactList;
