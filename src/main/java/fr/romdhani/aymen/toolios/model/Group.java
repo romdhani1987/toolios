@@ -13,6 +13,16 @@ public class Group implements Serializable {
     private Long id ;
     private Company company;
     private List<User> userList;
+    private GroupActivity groupActivity;
+    private User header ;
+
+    public User getHeader() {
+        return header;
+    }
+
+    public void setHeader(User header) {
+        this.header = header;
+    }
 
     public Company getCompany() {
         return company;
@@ -20,6 +30,14 @@ public class Group implements Serializable {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public GroupActivity getGroupActivity() {
+        return groupActivity;
+    }
+
+    public void setGroupActivity(GroupActivity groupActivity) {
+        this.groupActivity = groupActivity;
     }
 
     public List<User> getUserList() {
@@ -31,6 +49,12 @@ public class Group implements Serializable {
     }
 
     public Group() {
+    }
+
+    public Group(String name, Company company, GroupActivity groupActivity) {
+        this.name = name;
+        this.company = company;
+        this.groupActivity = groupActivity;
     }
 
     public Group(String name, Long id) {
