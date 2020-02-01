@@ -16,7 +16,6 @@ public class User implements Serializable {
     public enum UserGroupType {
         USER, ADMIN
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
