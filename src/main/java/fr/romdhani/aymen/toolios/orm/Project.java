@@ -3,6 +3,7 @@ package fr.romdhani.aymen.toolios.orm;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * @author aromdhani
@@ -15,8 +16,8 @@ public class Project implements Serializable {
     private User author;
     private User supervisor;
     private List<User> involvedUserList;
-    private Date startDate;
-    private Date plannedDate;
+    private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
+    private Timestamp plannedTimestamp;
 
     public User getSupervisor() {
         return supervisor;
@@ -34,22 +35,21 @@ public class Project implements Serializable {
         this.involvedUserList = involvedUserList;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Timestamp getStartDate() {
+        return creationTimestamp;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartDate(Timestamp creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
     }
 
-    public Date getPlannedDate() {
-        return plannedDate;
+    public Timestamp getPlannedTimestamp() {
+        return plannedTimestamp;
     }
 
-    public void setPlannedDate(Date plannedDate) {
-        this.plannedDate = plannedDate;
+    public void setPlannedTimestamp(Timestamp plannedTimestamp) {
+        this.plannedTimestamp = plannedTimestamp;
     }
-
 
     public Project() {
     }
