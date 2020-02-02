@@ -11,7 +11,7 @@ public class Company implements Serializable {
     private String name ;
     private Long serial ;
     private List<Group> groupList;
-    private Adress adress;
+    private Address address;
     private Long SIREN;
     private Long SIRET;
     private Activity activity;
@@ -32,12 +32,12 @@ public class Company implements Serializable {
         this.serial = serial;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Long getSIREN() {

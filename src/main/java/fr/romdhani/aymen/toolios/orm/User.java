@@ -1,15 +1,14 @@
 package fr.romdhani.aymen.toolios.orm;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author aromdhani
  */
+@Entity
+@Table(name = "user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -41,7 +40,13 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    private Adress adress;
+    @Column(name = "serialized_properties")
+    private String serializedProperties;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
     private Group group;
     private List<User> contactList;
     private List<UserFunction> functionList;
@@ -64,12 +69,12 @@ public class User implements Serializable {
         this.contactList = contactList;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Group getGroup() {
@@ -122,6 +127,30 @@ public class User implements Serializable {
 
     public String getLogin() {
         return login;
+    }
+
+    public String getSerializedProperties() {
+        return serializedProperties;
+    }
+
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getCreationMode() {
+        return creationMode;
+    }
+
+    public void setCreationMode(String creationMode) {
+        this.creationMode = creationMode;
     }
 
     public void setLogin(String login) {
