@@ -89,7 +89,5 @@ public class Response implements Serializable {
         this.id = id;
     }
 
-
-
 }
 
