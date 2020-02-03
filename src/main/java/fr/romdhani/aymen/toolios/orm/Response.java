@@ -1,5 +1,6 @@
 package fr.romdhani.aymen.toolios.orm;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,14 +8,33 @@ import java.util.Date;
  *
  * @author aromdhani
  */
+@Entity
+@Table(name = "response")
 public class Response implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String title;
-    private String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "startDate")
     private Date startDate;
+
+    @Column(name = "endDate")
     private Date endDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "action_id", referencedColumnName = "id")
     private Action action;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "anomaly_id", referencedColumnName = "id")
     private Anomaly anomaly;
 
     public Date getEndDate() {

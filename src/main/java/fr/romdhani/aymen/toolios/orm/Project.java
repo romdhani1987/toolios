@@ -1,5 +1,7 @@
 package fr.romdhani.aymen.toolios.orm;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -8,12 +10,15 @@ import java.sql.Timestamp;
 /**
  * @author aromdhani
  */
+@Entity
+@Table(name = "project")
 public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private Long id;
     private String title;
     private String description;
-    private Long id;
     private User author;
     private User supervisor;
     private List<User> involvedUserList;

@@ -62,13 +62,13 @@ public class User implements Serializable {
     private Set<UserResponsibility> responsibilitySet;
 
     @OneToMany(mappedBy = "user")
-    private Set<UserProject> userProjectSet;
+    private Set<Project> userProjectSet;
 
-    public Set<UserProject> getUserProjectSet() {
+    public Set<Project> getUserProjectSet() {
         return userProjectSet;
     }
 
-    public void setUserProjectSet(Set<UserProject> userProjectSet) {
+    public void setUserProjectSet(Set<Project> userProjectSet) {
         this.userProjectSet = userProjectSet;
     }
 
