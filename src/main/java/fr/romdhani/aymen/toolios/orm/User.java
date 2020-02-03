@@ -3,6 +3,7 @@ package fr.romdhani.aymen.toolios.orm;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author aromdhani
@@ -15,6 +16,7 @@ public class User implements Serializable {
     public enum UserGroupType {
         USER, ADMIN
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -51,25 +53,25 @@ public class User implements Serializable {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    private List<User> contactList;
-    private List<UserFunction> functionList;
-    private List<UserResponsibility> responsibilityList;
-    private List<UserProject> userProjectList;
+    private Set<User> contactSet;
+    private Set<UserFunction> functionSet;
+    private Set<UserResponsibility> responsibilitySet;
+    private Set<UserProject> userProjectSet;
 
-    public List<UserProject> getUserProjectList() {
-        return userProjectList;
+    public Set<UserProject> getUserProjectSet() {
+        return userProjectSet;
     }
 
-    public void setUserProjectList(List<UserProject> userProjectList) {
-        this.userProjectList = userProjectList;
+    public void setUserProjectSet(Set<UserProject> userProjectSet) {
+        this.userProjectSet = userProjectSet;
     }
 
-    public List<User> getContactList() {
-        return contactList;
+    public Set<User> getContactSet() {
+        return contactSet;
     }
 
-    public void setContactList(List<User> contactList) {
-        this.contactList = contactList;
+    public void setContactSet(Set<User> contactSet) {
+        this.contactSet = contactSet;
     }
 
     public Address getAddress() {
@@ -176,19 +178,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public List<UserFunction> getFunctionList() {
-        return functionList;
+    public Set<UserFunction> getFunctionSet() {
+        return functionSet;
     }
 
-    public void setFunctionList(List<UserFunction> functionList) {
-        this.functionList = functionList;
+    public void setFunctionSet(Set<UserFunction> functionSet) {
+        this.functionSet = functionSet;
     }
 
-    public List<UserResponsibility> getResponsibilityList() {
-        return responsibilityList;
+    public Set<UserResponsibility> getResponsibilitySet() {
+        return responsibilitySet;
     }
 
-    public void setResponsibilityList(List<UserResponsibility> responsabilityList) {
-        this.responsibilityList = responsabilityList;
+    public void setResponsibilitySet(Set<UserResponsibility> responsabilityList) {
+        this.responsibilitySet = responsabilityList;
     }
 }
