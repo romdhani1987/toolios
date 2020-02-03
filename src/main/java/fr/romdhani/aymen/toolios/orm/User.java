@@ -53,9 +53,15 @@ public class User implements Serializable {
     @JoinColumn(name = "group_id")
     private Group group;
 
+
     private Set<User> contactSet;
+
     private Set<UserFunction> functionSet;
+
+    @OneToMany(mappedBy = "user")
     private Set<UserResponsibility> responsibilitySet;
+
+    @OneToMany(mappedBy = "user")
     private Set<UserProject> userProjectSet;
 
     public Set<UserProject> getUserProjectSet() {

@@ -37,7 +37,7 @@ public class Company implements Serializable {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "company")
     private Set<Group> groupSet;
 
     public Set<Group> getGroupSet() {
