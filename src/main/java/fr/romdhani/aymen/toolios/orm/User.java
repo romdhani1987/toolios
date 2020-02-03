@@ -47,7 +47,10 @@ public class User implements Serializable {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private Group group;
+
     private List<User> contactList;
     private List<UserFunction> functionList;
     private List<UserResponsibility> responsibilityList;

@@ -1,27 +1,47 @@
 package fr.romdhani.aymen.toolios.orm;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author aromdhani
  */
+@Entity
+@Table(name = "group")
 public class Group implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
-    private List<User> userList;
-    private List<Group> underGroupList;
+
+    @OneToMany(mappedBy = "group")
+    private Set<User> userSet;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_activity_id", referencedColumnName = "id")
     private GroupActivity groupActivity;
+
     private User header;
 
-    public List<Group> getUnderGroupList() {
-        return underGroupList;
+    private Set<Group> underGroupSet;
+
+
+    public Set<Group> getUnderGroupSet() {
+        return underGroupSet;
     }
 
-    public void setUnderGroupList(List<Group> underGroupList) {
-        this.underGroupList = underGroupList;
+    public void setUnderGroupSet(Set<Group> underGroupSet) {
+        this.underGroupSet = underGroupSet;
     }
 
     public User getHeader() {
@@ -48,12 +68,12 @@ public class Group implements Serializable {
         this.groupActivity = groupActivity;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUserSet(Set<User>  userSet) {
+        this.userSet = userSet;
     }
 
     public Group() {
