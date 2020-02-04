@@ -2,7 +2,6 @@ package fr.romdhani.aymen.toolios.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -56,6 +55,7 @@ public class User implements Serializable {
 
     private Set<User> contactSet;
 
+    @OneToMany(mappedBy = "user")
     private Set<UserFunction> functionSet;
 
     @OneToMany(mappedBy = "user")
@@ -63,6 +63,9 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user")
     private Set<Project> userProjectSet;
+
+    @OneToMany(mappedBy = "supervisor")
+    private Set<Project> supervisedProjectSet;
 
     public Set<Project> getUserProjectSet() {
         return userProjectSet;

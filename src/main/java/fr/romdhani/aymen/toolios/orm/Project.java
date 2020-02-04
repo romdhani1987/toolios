@@ -1,7 +1,6 @@
 package fr.romdhani.aymen.toolios.orm;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,13 +14,26 @@ import java.sql.Timestamp;
 public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    private Long id;
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
-    private User author;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User supervisor;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     private List<User> involvedUserList;
+
     private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
     private Timestamp plannedTimestamp;
 
@@ -60,11 +72,10 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(String name, String description, User author) {
+    public Project(String name, String description) {
         this.title = name;
         this.description = description;
-        this.author = author;
-    }
+           }
 
     public String getTitle() {
         return title;
@@ -90,13 +101,5 @@ public class Project implements Serializable {
         this.id = id;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-}
+ }
 

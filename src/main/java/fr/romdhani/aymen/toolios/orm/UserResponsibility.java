@@ -1,20 +1,36 @@
 package fr.romdhani.aymen.toolios.orm;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Set;
 
 /**
- *
  * @author aromdhani
  */
+@Entity
+@Table(name = "user_responsibility")
 public class UserResponsibility implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name ;
-    private Long id ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-    private Machine machine;
-    private Date startDate;
-    private Date endDate;
+
+    @OneToMany(mappedBy = "responsibility")
+    private Set<Machine> machineSet;
+
+    @Column(name = "start_timestamp")
+    private Timestamp startTimestamp;
+
+    @Column(name = "end_timestamp")
+    private Timestamp endTimestamp;
 
     public UserResponsibility() {
     }
@@ -22,6 +38,22 @@ public class UserResponsibility implements Serializable {
     public UserResponsibility(String name, Long id) {
         this.name = name;
         this.id = id;
+    }
+
+    public Timestamp getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(Timestamp startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public Timestamp getEndTimestamp() {
+        return endTimestamp;
+    }
+
+    public void setEndTimestamp(Timestamp endTimestamp) {
+        this.endTimestamp = endTimestamp;
     }
 
     public String getName() {
@@ -48,27 +80,12 @@ public class UserResponsibility implements Serializable {
         this.user = user;
     }
 
-    public Machine getMachine() {
-        return machine;
+    public Set<Machine> getMachineSet() {
+        return machineSet;
     }
 
-    public void setMachine(Machine machine) {
-        this.machine = machine;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setMachineSet(Set<Machine> machineSet) {
+        this.machineSet = machineSet;
     }
 }
+

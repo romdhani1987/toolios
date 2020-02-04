@@ -1,15 +1,35 @@
 package fr.romdhani.aymen.toolios.orm;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  *
  * @author aromdhani
  */
+@Entity
+@Table(name = "user_function")
 public class UserFunction  implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name ;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
+
+    @Column(name = "name")
+    private String name ;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public UserFunction() {
     }
