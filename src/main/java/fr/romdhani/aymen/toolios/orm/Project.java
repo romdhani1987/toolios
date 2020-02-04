@@ -24,58 +24,29 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User supervisor;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-
-    private List<User> involvedUserList;
-
+    @Column(name = "creation_time")
     private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
+
+    @Column(name = "planned_time")
     private Timestamp plannedTimestamp;
 
-    public User getSupervisor() {
-        return supervisor;
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User supervisor;
 
-    public void setSupervisor(User supervisor) {
-        this.supervisor = supervisor;
-    }
-
-    public List<User> getInvolvedUserList() {
-        return involvedUserList;
-    }
-
-    public void setInvolvedUserList(List<User> involvedUserList) {
-        this.involvedUserList = involvedUserList;
-    }
-
-    public Timestamp getStartDate() {
-        return creationTimestamp;
-    }
-
-    public void setStartDate(Timestamp creationTimestamp) {
-        this.creationTimestamp = creationTimestamp;
-    }
-
-    public Timestamp getPlannedTimestamp() {
-        return plannedTimestamp;
-    }
-
-    public void setPlannedTimestamp(Timestamp plannedTimestamp) {
-        this.plannedTimestamp = plannedTimestamp;
-    }
+    @ManyToMany(mappedBy = "userProjectSet")
+    private List<User> involvedUserList;
 
     public Project() {
     }
 
-    public Project(String name, String description) {
-        this.title = name;
-        this.description = description;
-           }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -93,13 +64,36 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
+    public Timestamp getCreationTimestamp() {
+        return creationTimestamp;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCreationTimestamp(Timestamp creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
     }
 
- }
+    public Timestamp getPlannedTimestamp() {
+        return plannedTimestamp;
+    }
+
+    public void setPlannedTimestamp(Timestamp plannedTimestamp) {
+        this.plannedTimestamp = plannedTimestamp;
+    }
+
+    public User getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(User supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public List<User> getInvolvedUserList() {
+        return involvedUserList;
+    }
+
+    public void setInvolvedUserList(List<User> involvedUserList) {
+        this.involvedUserList = involvedUserList;
+    }
+}
 

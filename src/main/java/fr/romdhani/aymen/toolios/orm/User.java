@@ -61,66 +61,31 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<UserResponsibility> responsibilitySet;
 
-    @OneToMany(mappedBy = "user")
+    // bi-directional many-to-many association
+    @ManyToMany
+    @JoinTable(name = "user_project_map", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "project_id") })
     private Set<Project> userProjectSet;
 
     @OneToMany(mappedBy = "supervisor")
     private Set<Project> supervisedProjectSet;
 
-    public Set<Project> getUserProjectSet() {
-        return userProjectSet;
-    }
-
-    public void setUserProjectSet(Set<Project> userProjectSet) {
-        this.userProjectSet = userProjectSet;
-    }
-
-    public Set<User> getContactSet() {
-        return contactSet;
-    }
-
-    public void setContactSet(Set<User> contactSet) {
-        this.contactSet = contactSet;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
     public User() {
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public long getId() {
+        return id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public User(String login, String email) {
-        this.login = login;
-        this.email = email;
+    public String getCreationMode() {
+        return creationMode;
     }
 
-    public User(String fName, String lName, String login, String email, String password) {
-        this.fName = fName;
-        this.lName = lName;
-        this.login = login;
-        this.email = email;
-        this.password = password;
+    public void setCreationMode(String creationMode) {
+        this.creationMode = creationMode;
     }
 
     public String getfName() {
@@ -143,30 +108,6 @@ public class User implements Serializable {
         return login;
     }
 
-    public String getSerializedProperties() {
-        return serializedProperties;
-    }
-
-    public void setSerializedProperties(String serializedProperties) {
-        this.serializedProperties = serializedProperties;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getCreationMode() {
-        return creationMode;
-    }
-
-    public void setCreationMode(String creationMode) {
-        this.creationMode = creationMode;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -179,12 +120,52 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSerializedProperties() {
+        return serializedProperties;
+    }
+
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Set<User> getContactSet() {
+        return contactSet;
+    }
+
+    public void setContactSet(Set<User> contactSet) {
+        this.contactSet = contactSet;
     }
 
     public Set<UserFunction> getFunctionSet() {
@@ -199,7 +180,23 @@ public class User implements Serializable {
         return responsibilitySet;
     }
 
-    public void setResponsibilitySet(Set<UserResponsibility> responsabilityList) {
-        this.responsibilitySet = responsabilityList;
+    public void setResponsibilitySet(Set<UserResponsibility> responsibilitySet) {
+        this.responsibilitySet = responsibilitySet;
+    }
+
+    public Set<Project> getUserProjectSet() {
+        return userProjectSet;
+    }
+
+    public void setUserProjectSet(Set<Project> userProjectSet) {
+        this.userProjectSet = userProjectSet;
+    }
+
+    public Set<Project> getSupervisedProjectSet() {
+        return supervisedProjectSet;
+    }
+
+    public void setSupervisedProjectSet(Set<Project> supervisedProjectSet) {
+        this.supervisedProjectSet = supervisedProjectSet;
     }
 }
