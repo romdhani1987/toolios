@@ -28,7 +28,6 @@ CREATE TABLE public.address (
                 CONSTRAINT address_pk PRIMARY KEY (id)
 );
 
-
 CREATE SEQUENCE public.private String user_function_id_seq;
 CREATE TABLE public.user_function (
                 id BIGINT NOT NULL DEFAULT nextval('public.address_id_seq'),
@@ -112,6 +111,30 @@ CREATE TABLE public.project_user_account_map (
                 serialized_properties TEXT,
                 CONSTRAINT project_user_account_map_pk PRIMARY KEY (project_id, user_account_id)
 );
+
+CREATE SEQUENCE public.private String request_id_seq;
+CREATE TABLE public.request (
+                id BIGINT NOT NULL DEFAULT nextval('public.request_id_seq'),
+                title VARCHAR(250) NOT NULL,
+                description VARCHAR(1000),
+                creation_timestamp TIMESTAMP NOT NULL,
+                serialized_properties TEXT,
+                author_id BIGINT,
+			    CONSTRAINT request_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.private String anomaly_id_seq;
+CREATE TABLE public.anomaly (
+                id BIGINT NOT NULL DEFAULT nextval('public.anomaly_id_seq'),
+                CONSTRAINT anomaly_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.private String purchase_id_seq;
+CREATE TABLE public.purchase (
+                id BIGINT NOT NULL DEFAULT nextval('public.purchase_id_seq'),
+                CONSTRAINT purchase_pk PRIMARY KEY (id)
+);
+
 CREATE SEQUENCE public.private String action_id_seq;
 CREATE TABLE public.action (
                 id BIGINT NOT NULL DEFAULT nextval('public.action_id_seq'),
