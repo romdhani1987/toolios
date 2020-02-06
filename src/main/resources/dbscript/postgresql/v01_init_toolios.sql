@@ -87,10 +87,19 @@ CREATE TABLE public.machine(
                 name VARCHAR(250) NOT NULL,
 				description VARCHAR(1000),
 				address_id BIGINT NOT NULL,
+				machine_type_id BIGINT NOT NULL,
 				serialized_properties TEXT,
                 CONSTRAINT machine_pk PRIMARY KEY (id)
 );
 
+
+CREATE SEQUENCE public.private String machine_type_id_seq;
+CREATE TABLE public.machine_type(
+                id BIGINT NOT NULL DEFAULT nextval('public.machine_type_id_seq'),
+                type VARCHAR(250) NOT NULL,
+		    	serialized_properties TEXT,
+                CONSTRAINT machine_type_pk PRIMARY KEY (id)
+);
 
 CREATE SEQUENCE public.private String project_id_seq;
 CREATE TABLE public.project (
@@ -143,6 +152,22 @@ CREATE TABLE public.action (
                 creation_timestamp TIMESTAMP NOT NULL,
                 lock_expiration_timestamp TIMESTAMP,
                 serialized_properties TEXT,
-                author_id BIGINT,
-			    CONSTRAINT action_pk PRIMARY KEY (id)
+           	    CONSTRAINT action_pk PRIMARY KEY (id)
 );
+
+CREATE SEQUENCE public.private String response_id_seq;
+CREATE TABLE public.response (
+                id BIGINT NOT NULL DEFAULT nextval('public.response_id_seq'),
+                title VARCHAR(250) NOT NULL,
+                description VARCHAR(1000),
+                creation_timestamp TIMESTAMP NOT NULL,
+                lock_expiration_timestamp TIMESTAMP,
+                serialized_properties TEXT,
+                author_id BIGINT NOT NULL,
+                assigned_by_id BIGINT NOT NULL,
+                action_id BIGINT NOT NULL,
+                request_id BIGINT NOT NULL,
+			    CONSTRAINT response_pk PRIMARY KEY (id)
+);
+
+
