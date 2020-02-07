@@ -144,14 +144,14 @@ CREATE TABLE public.purchase (
 );
 
 CREATE SEQUENCE public.private String action_id_seq;
-CREATE TABLE public.action (
-                id BIGINT NOT NULL DEFAULT nextval('public.action_id_seq'),
+CREATE TABLE public.user_action (
+                id BIGINT NOT NULL DEFAULT nextval('public.user_action_id_seq'),
                 title VARCHAR(250) NOT NULL,
                 description VARCHAR(1000),
                 creation_timestamp TIMESTAMP NOT NULL,
                 lock_expiration_timestamp TIMESTAMP,
                 serialized_properties TEXT,
-           	    CONSTRAINT action_pk PRIMARY KEY (id)
+           	    CONSTRAINT user_action_pk PRIMARY KEY (id)
 );
 
 CREATE SEQUENCE public.private String response_id_seq;
@@ -284,3 +284,39 @@ REFERENCES public.user_account (id)
 ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+ALTER TABLE public.response ADD CONSTRAINT author_id_fk
+FOREIGN KEY (author_id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.response ADD CONSTRAINT assigned_by_fk
+FOREIGN KEY (assigned_by_id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.response ADD CONSTRAINT assigned_by_fk
+FOREIGN KEY (assigned_by_id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.response ADD CONSTRAINT action_fk
+FOREIGN KEY (action_id)
+REFERENCES public.user_action (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.response ADD CONSTRAINT request_fk
+FOREIGN KEY (request_id)
+REFERENCES public.request (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+    
