@@ -61,7 +61,7 @@ CREATE TABLE public.company(
 				company_serial BIGINT NOT NULL,
 				SIREN BIGINT NOT NULL,
 				SIRET BIGINT NOT NULL,
-				address_id BIGINT,
+				address_id BIGINT  NOT NULL,
 				serialized_properties TEXT,
                 CONSTRAINT company_pk PRIMARY KEY (id)
 );
@@ -95,7 +95,7 @@ CREATE TABLE public.machine(
 CREATE SEQUENCE public.private String machine_type_id_seq;
 CREATE TABLE public.machine_type(
                 id BIGINT NOT NULL DEFAULT nextval('public.machine_type_id_seq'),
-                type VARCHAR(250) NOT NULL,
+                machine_type VARCHAR(250) NOT NULL,
 		    	serialized_properties TEXT,
                 CONSTRAINT machine_type_pk PRIMARY KEY (id)
 );
@@ -218,6 +218,7 @@ ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+
 ALTER TABLE public.user_responsibility ADD CONSTRAINT user_account_fk
 FOREIGN KEY (user_account_id)
 REFERENCES public.user_account (id)
@@ -233,6 +234,36 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 
+ALTER TABLE public.machine ADD CONSTRAINT address_fk
+FOREIGN KEY (address_id)
+REFERENCES public.address (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+ALTER TABLE public.machine ADD CONSTRAINT machine_type_fk
+FOREIGN KEY (machine_type_id)
+REFERENCES public.machine_type (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.project ADD CONSTRAINT author_id_fk
+FOREIGN KEY (author_id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.project ADD CONSTRAINT supervisor_id_fk
+FOREIGN KEY (supervisor_id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
 ALTER TABLE public.project_user_account_map ADD CONSTRAINT project_project_user_map_fk
 FOREIGN KEY (project_id)
 REFERENCES public.project (id)
@@ -244,5 +275,12 @@ ALTER TABLE public.project_user_account_map ADD CONSTRAINT user_account_project_
 FOREIGN KEY (user_account_id)
 REFERENCES public.user_account (id)
 ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.request ADD CONSTRAINT author_id_fk
+FOREIGN KEY (author_id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
