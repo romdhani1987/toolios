@@ -13,11 +13,10 @@ CREATE TABLE public.user_account (
 				user_function_id BIGINT NOT NULL,
 				user_responsibility_id BIGINT NOT NULL,
 				group_id BIGINT NOT NULL,
-				serialized_properties TEXT,
-                CONSTRAINT user_pk PRIMARY KEY (id)
+				CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String address_id_seq;
+CREATE SEQUENCE public.address_id_seq;
 CREATE TABLE public.address (
                 id BIGINT NOT NULL DEFAULT nextval('public.address_id_seq'),
                 street VARCHAR(250) ,
@@ -27,14 +26,14 @@ CREATE TABLE public.address (
                 CONSTRAINT address_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String user_function_id_seq;
+CREATE SEQUENCE public.user_function_id_seq;
 CREATE TABLE public.user_function (
                 id BIGINT NOT NULL DEFAULT nextval('public.address_id_seq'),
                 function_name VARCHAR(250) NOT NULL,
                 CONSTRAINT user_function_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String group_id_seq;
+CREATE SEQUENCE public.group_id_seq;
 CREATE TABLE public.user_group (
                 id BIGINT NOT NULL DEFAULT nextval('public.group_id_seq'),
                 user_group_name VARCHAR(250) ,
@@ -45,7 +44,7 @@ CREATE TABLE public.user_group (
 );
 
 
-CREATE SEQUENCE public.private String group_activity_id_seq;
+CREATE SEQUENCE public.group_activity_id_seq;
 CREATE TABLE public.group_activity (
                 id BIGINT NOT NULL DEFAULT nextval('public.group_activity_id_seq'),
                 group_activity_name VARCHAR(250) NOT NULL,
@@ -54,7 +53,7 @@ CREATE TABLE public.group_activity (
 );
 
 
-CREATE SEQUENCE public.private String company_id_seq;
+CREATE SEQUENCE public.company_id_seq;
 CREATE TABLE public.company(
                 id BIGINT NOT NULL DEFAULT nextval('public.company_id_seq'),
                 company_name VARCHAR(250) NOT NULL,
@@ -67,7 +66,7 @@ CREATE TABLE public.company(
 );
 
 
-CREATE SEQUENCE public.private String user_responsibility_id_seq;
+CREATE SEQUENCE public.user_responsibility_id_seq;
 CREATE TABLE public.user_responsibility (
                 id BIGINT NOT NULL DEFAULT nextval('public.user_responsibility_id_seq'),
                 user_responsibility_name VARCHAR(250) NOT NULL,
@@ -80,7 +79,7 @@ CREATE TABLE public.user_responsibility (
 );
 
 
-CREATE SEQUENCE public.private String machine_id_seq;
+CREATE SEQUENCE public.machine_id_seq;
 CREATE TABLE public.machine(
                 id BIGINT NOT NULL DEFAULT nextval('public.machine_id_seq'),
                 machine_name VARCHAR(250) NOT NULL,
@@ -92,7 +91,7 @@ CREATE TABLE public.machine(
 );
 
 
-CREATE SEQUENCE public.private String machine_type_id_seq;
+CREATE SEQUENCE public.machine_type_id_seq;
 CREATE TABLE public.machine_type(
                 id BIGINT NOT NULL DEFAULT nextval('public.machine_type_id_seq'),
                 machine_type VARCHAR(250) NOT NULL,
@@ -100,7 +99,7 @@ CREATE TABLE public.machine_type(
                 CONSTRAINT machine_type_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String project_id_seq;
+CREATE SEQUENCE public.project_id_seq;
 CREATE TABLE public.project (
                 id BIGINT NOT NULL DEFAULT nextval('public.project_id_seq'),
                 title VARCHAR(250) NOT NULL,
@@ -120,7 +119,7 @@ CREATE TABLE public.project_user_account_map (
                 CONSTRAINT project_user_account_map_pk PRIMARY KEY (project_id, user_account_id)
 );
 
-CREATE SEQUENCE public.private String request_id_seq;
+CREATE SEQUENCE public.request_id_seq;
 CREATE TABLE public.request (
                 id BIGINT NOT NULL DEFAULT nextval('public.request_id_seq'),
                 title VARCHAR(250) NOT NULL,
@@ -131,19 +130,19 @@ CREATE TABLE public.request (
 			    CONSTRAINT request_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String anomaly_id_seq;
+CREATE SEQUENCE public.anomaly_id_seq;
 CREATE TABLE public.anomaly (
                 id BIGINT NOT NULL DEFAULT nextval('public.anomaly_id_seq'),
                 CONSTRAINT anomaly_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String purchase_id_seq;
+CREATE SEQUENCE public.purchase_id_seq;
 CREATE TABLE public.purchase (
                 id BIGINT NOT NULL DEFAULT nextval('public.purchase_id_seq'),
                 CONSTRAINT purchase_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String action_id_seq;
+CREATE SEQUENCE public.user_action_id_seq;
 CREATE TABLE public.user_action (
                 id BIGINT NOT NULL DEFAULT nextval('public.user_action_id_seq'),
                 title VARCHAR(250) NOT NULL,
@@ -154,7 +153,7 @@ CREATE TABLE public.user_action (
            	    CONSTRAINT user_action_pk PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.private String response_id_seq;
+CREATE SEQUENCE public.response_id_seq;
 CREATE TABLE public.response (
                 id BIGINT NOT NULL DEFAULT nextval('public.response_id_seq'),
                 title VARCHAR(250) NOT NULL,
@@ -299,13 +298,6 @@ ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.response ADD CONSTRAINT assigned_by_fk
-FOREIGN KEY (assigned_by_id)
-REFERENCES public.user_account (id)
-ON DELETE RESTRICT
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
 ALTER TABLE public.response ADD CONSTRAINT action_fk
 FOREIGN KEY (action_id)
 REFERENCES public.user_action (id)
@@ -319,4 +311,17 @@ REFERENCES public.request (id)
 ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
-    
+
+ALTER TABLE public.anomaly ADD CONSTRAINT anomaly_fk
+FOREIGN KEY (id)
+REFERENCES public.request (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.purchase ADD CONSTRAINT purchase_fk
+FOREIGN KEY (id)
+REFERENCES public.request (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
