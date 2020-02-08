@@ -1,6 +1,6 @@
-CREATE SEQUENCE public.user_id_seq;
+CREATE SEQUENCE public.user_account_id_seq;
 CREATE TABLE public.user_account (
-                id BIGINT NOT NULL DEFAULT nextval('public.user_id_seq'),
+                id BIGINT NOT NULL DEFAULT nextval('public.user_account_id_seq'),
                 login VARCHAR(50) NOT NULL,
 				f_name VARCHAR(50),
 				l_name VARCHAR(50),
@@ -13,7 +13,32 @@ CREATE TABLE public.user_account (
 				user_function_id BIGINT NOT NULL,
 				user_responsibility_id BIGINT NOT NULL,
 				group_id BIGINT NOT NULL,
-				CONSTRAINT user_pk PRIMARY KEY (id)
+				CONSTRAINT user_account_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.simple_user_account_id_seq;
+CREATE TABLE public.simple_user_account (
+                id BIGINT NOT NULL DEFAULT nextval('public.simple_user_account_id_seq'),
+               	CONSTRAINT simple_user_account_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.supervisor_account_id_seq;
+CREATE TABLE public.supervisor_account (
+                id BIGINT NOT NULL DEFAULT nextval('public.supervisor_account_id_seq'),
+               	CONSTRAINT supervisor_account_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.provider_account_id_seq;
+CREATE TABLE public.provider_account (
+                id BIGINT NOT NULL DEFAULT nextval('public.provider_account_id_seq'),
+                f_name VARCHAR(50),
+				l_name VARCHAR(50),
+				email VARCHAR(50) NOT NULL,
+				phone_number VARCHAR(50),
+				creation_mode VARCHAR(50),
+                serialized_properties TEXT,
+                created_by_id BIGINT NOT NULL,
+               	CONSTRAINT provider_account_pk PRIMARY KEY (id)
 );
 
 CREATE SEQUENCE public.address_id_seq;
@@ -84,8 +109,9 @@ CREATE TABLE public.machine(
                 id BIGINT NOT NULL DEFAULT nextval('public.machine_id_seq'),
                 machine_name VARCHAR(250) NOT NULL,
 				description VARCHAR(1000),
-				address_id BIGINT NOT NULL,
+				address_id BIGINT ,
 				machine_type_id BIGINT NOT NULL,
+                project_id BIGINT ,
 				serialized_properties TEXT,
                 CONSTRAINT machine_pk PRIMARY KEY (id)
 );
@@ -248,6 +274,13 @@ ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+ALTER TABLE public.machine ADD CONSTRAINT project_fk
+FOREIGN KEY (project_id)
+REFERENCES public.project (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
 ALTER TABLE public.project ADD CONSTRAINT author_id_fk
 FOREIGN KEY (author_id)
 REFERENCES public.user_account (id)
@@ -293,7 +326,7 @@ NOT DEFERRABLE;
 
 ALTER TABLE public.response ADD CONSTRAINT assigned_by_fk
 FOREIGN KEY (assigned_by_id)
-REFERENCES public.user_account (id)
+REFERENCES public.supervisor_account (id)
 ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -322,6 +355,27 @@ NOT DEFERRABLE;
 ALTER TABLE public.purchase ADD CONSTRAINT purchase_fk
 FOREIGN KEY (id)
 REFERENCES public.request (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.simple_user_account ADD CONSTRAINT simple_user_account_fk
+FOREIGN KEY (id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.supervisor_account ADD CONSTRAINT supervisor_account_fk
+FOREIGN KEY (id)
+REFERENCES public.user_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.provider_account ADD CONSTRAINT created_by_id_fk
+FOREIGN KEY (id)
+REFERENCES public.supervisor_account (id)
 ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
