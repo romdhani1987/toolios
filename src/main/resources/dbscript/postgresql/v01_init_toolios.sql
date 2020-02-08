@@ -111,8 +111,7 @@ CREATE TABLE public.machine(
 				description VARCHAR(1000),
 				address_id BIGINT ,
 				machine_type_id BIGINT NOT NULL,
-                project_id BIGINT ,
-				serialized_properties TEXT,
+              	serialized_properties TEXT,
                 CONSTRAINT machine_pk PRIMARY KEY (id)
 );
 
@@ -144,6 +143,13 @@ CREATE TABLE public.project_user_account_map (
                 serialized_properties TEXT,
                 CONSTRAINT project_user_account_map_pk PRIMARY KEY (project_id, user_account_id)
 );
+CREATE TABLE public.project_machine_map (
+                project_id BIGINT NOT NULL,
+                machine_id BIGINT NOT NULL,
+                serialized_properties TEXT,
+                CONSTRAINT project_machine_map_pk PRIMARY KEY (project_id, machine_id)
+);
+
 
 CREATE SEQUENCE public.request_id_seq;
 CREATE TABLE public.request (
@@ -191,6 +197,26 @@ CREATE TABLE public.action_purchase (
                 provider_account_id BIGINT NOT NULL,
                 CONSTRAINT action_purchase_pk PRIMARY KEY (id)
 );
+
+CREATE SEQUENCE public.article_id_seq;
+CREATE TABLE public.article (
+                id BIGINT NOT NULL DEFAULT nextval('public.article_id_seq'),
+                title VARCHAR(250) NOT NULL,
+                description VARCHAR(1000),
+                serialized_properties TEXT,
+                price_ht NUMERIC,
+                price_ttc NUMERIC,
+                provider_account_id BIGINT ,
+                article_category_id BIGINT ,
+                CONSTRAINT article_pk PRIMARY KEY (id)
+);
+CREATE SEQUENCE public.article_category_id_seq;
+CREATE TABLE public.article_category (
+                id BIGINT NOT NULL DEFAULT nextval('public.article_category_id_seq'),
+                provider_account_id BIGINT NOT NULL,
+                CONSTRAINT article_category_pk PRIMARY KEY (id)
+);
+
 
 CREATE SEQUENCE public.response_id_seq;
 CREATE TABLE public.response (
@@ -287,13 +313,6 @@ ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.machine ADD CONSTRAINT project_fk
-FOREIGN KEY (project_id)
-REFERENCES public.project (id)
-ON DELETE RESTRICT
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
 ALTER TABLE public.project ADD CONSTRAINT author_id_fk
 FOREIGN KEY (author_id)
 REFERENCES public.user_account (id)
@@ -319,6 +338,21 @@ NOT DEFERRABLE;
 ALTER TABLE public.project_user_account_map ADD CONSTRAINT user_account_project_user_map_fk
 FOREIGN KEY (user_account_id)
 REFERENCES public.user_account (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+ALTER TABLE public.project_machine_map ADD CONSTRAINT project_map_fk
+FOREIGN KEY (project_id)
+REFERENCES public.project (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.project_machine_map ADD CONSTRAINT machine_map_fk
+FOREIGN KEY (machine_id)
+REFERENCES public.machine (id)
 ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -408,6 +442,20 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.action_purchase ADD CONSTRAINT provider_account_fk
+FOREIGN KEY (provider_account_id)
+REFERENCES public.provider_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.article ADD CONSTRAINT article_category_fk
+FOREIGN KEY (article_category_id)
+REFERENCES public.article_category (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.article ADD CONSTRAINT provider_account_fk
 FOREIGN KEY (provider_account_id)
 REFERENCES public.provider_account (id)
 ON DELETE RESTRICT
