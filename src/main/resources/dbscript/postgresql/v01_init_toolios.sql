@@ -303,7 +303,7 @@ NOT DEFERRABLE;
 
 ALTER TABLE public.project ADD CONSTRAINT supervisor_id_fk
 FOREIGN KEY (supervisor_id)
-REFERENCES public.user_account (id)
+REFERENCES public.supervisor_account (id)
 ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
