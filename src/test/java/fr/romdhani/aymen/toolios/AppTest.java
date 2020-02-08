@@ -1,6 +1,6 @@
 package fr.romdhani.aymen.toolios;
 
-import fr.romdhani.aymen.toolios.orm.User;
+import fr.romdhani.aymen.toolios.core.orm.User;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

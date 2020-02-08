@@ -1,4 +1,4 @@
-package fr.romdhani.aymen.toolios.orm;
+package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 

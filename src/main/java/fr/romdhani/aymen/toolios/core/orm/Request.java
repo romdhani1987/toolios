@@ -1,24 +1,37 @@
-package fr.romdhani.aymen.toolios.orm;
+package fr.romdhani.aymen.toolios.core.orm;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
  *
  * @author aromdhani
  */
-public class Anomaly implements Serializable {
+@Entity
+@Table(name = "request")
+public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
+     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(name = "title")
     private String title;
-    private String description ;
-    private Long id ;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "creation_time")
+    private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
+
     private  User author;
-    private  User assigned;
-    private Date observedDate;
-    public Anomaly() {
+
+    public Request() {
     }
 
-    public Anomaly(String name, String description, User author) {
+    public Request(String name, String description, User author) {
         this.title = name;
         this.description = description;
         this.author = author;
@@ -56,12 +69,5 @@ public class Anomaly implements Serializable {
         this.author = author;
     }
 
-    public User getAssigned() {
-        return assigned;
-    }
-
-    public void setAssigned(User assigned) {
-        this.assigned = assigned;
-    }
 }
 
