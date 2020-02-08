@@ -179,6 +179,19 @@ CREATE TABLE public.user_action (
            	    CONSTRAINT user_action_pk PRIMARY KEY (id)
 );
 
+CREATE SEQUENCE public.action_improvement_id_seq;
+CREATE TABLE public.action_improvement (
+                id BIGINT NOT NULL DEFAULT nextval('public.action_improvement_id_seq'),
+                CONSTRAINT action_improvement_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.action_purchase_id_seq;
+CREATE TABLE public.action_purchase (
+                id BIGINT NOT NULL DEFAULT nextval('public.action_purchase_id_seq'),
+                provider_account_id BIGINT NOT NULL,
+                CONSTRAINT action_purchase_pk PRIMARY KEY (id)
+);
+
 CREATE SEQUENCE public.response_id_seq;
 CREATE TABLE public.response (
                 id BIGINT NOT NULL DEFAULT nextval('public.response_id_seq'),
@@ -376,6 +389,27 @@ NOT DEFERRABLE;
 ALTER TABLE public.provider_account ADD CONSTRAINT created_by_id_fk
 FOREIGN KEY (id)
 REFERENCES public.supervisor_account (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.action_improvement ADD CONSTRAINT user_action_fk
+FOREIGN KEY (id)
+REFERENCES public.user_action (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.action_purchase ADD CONSTRAINT user_action_fk
+FOREIGN KEY (id)
+REFERENCES public.user_action (id)
+ON DELETE RESTRICT
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.action_purchase ADD CONSTRAINT provider_account_fk
+FOREIGN KEY (provider_account_id)
+REFERENCES public.provider_account (id)
 ON DELETE RESTRICT
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
