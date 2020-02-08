@@ -4,15 +4,15 @@ CREATE TABLE public.user_account (
                 login VARCHAR(50) NOT NULL,
 				f_name VARCHAR(50),
 				l_name VARCHAR(50),
-				email VARCHAR(50) NOT NULL,
+				email VARCHAR(50) ,
 				phone_number VARCHAR(50),
                 password_hash VARCHAR(50) NOT NULL,
 				creation_mode VARCHAR(50),
                 serialized_properties TEXT,
-				address_id BIGINT NOT NULL,
-				user_function_id BIGINT NOT NULL,
-				user_responsibility_id BIGINT NOT NULL,
-				group_id BIGINT NOT NULL,
+				address_id BIGINT ,
+				user_function_id BIGINT ,
+				user_responsibility_id BIGINT,
+				group_id BIGINT,
 				CONSTRAINT user_account_pk PRIMARY KEY (id)
 );
 
@@ -82,10 +82,10 @@ CREATE SEQUENCE public.company_id_seq;
 CREATE TABLE public.company(
                 id BIGINT NOT NULL DEFAULT nextval('public.company_id_seq'),
                 company_name VARCHAR(250) NOT NULL,
-				company_serial BIGINT NOT NULL,
-				SIREN BIGINT NOT NULL,
+				company_serial BIGINT ,
+				SIREN BIGINT ,
 				SIRET BIGINT NOT NULL,
-				address_id BIGINT  NOT NULL,
+				address_id BIGINT,
 				serialized_properties TEXT,
                 CONSTRAINT company_pk PRIMARY KEY (id)
 );
@@ -94,7 +94,7 @@ CREATE TABLE public.company(
 CREATE SEQUENCE public.user_responsibility_id_seq;
 CREATE TABLE public.user_responsibility (
                 id BIGINT NOT NULL DEFAULT nextval('public.user_responsibility_id_seq'),
-                user_responsibility_name VARCHAR(250) NOT NULL,
+                user_responsibility_name VARCHAR(250) ,
 				start_timestamp TIMESTAMP NOT NULL,
 				stop_timestamp TIMESTAMP,
 				user_account_id BIGINT NOT NULL,
@@ -107,10 +107,10 @@ CREATE TABLE public.user_responsibility (
 CREATE SEQUENCE public.machine_id_seq;
 CREATE TABLE public.machine(
                 id BIGINT NOT NULL DEFAULT nextval('public.machine_id_seq'),
-                machine_name VARCHAR(250) NOT NULL,
+                machine_name VARCHAR(250) ,
 				description VARCHAR(1000),
 				address_id BIGINT ,
-				machine_type_id BIGINT NOT NULL,
+				machine_type_id BIGINT,
               	serialized_properties TEXT,
                 CONSTRAINT machine_pk PRIMARY KEY (id)
 );
@@ -132,7 +132,7 @@ CREATE TABLE public.project (
                 creation_timestamp TIMESTAMP NOT NULL,
                 lock_expiration_timestamp TIMESTAMP,
                 author_id BIGINT NOT NULL,
-				supervisor_id BIGINT NOT NULL,
+				supervisor_id BIGINT ,
 				serialized_properties TEXT,
                 CONSTRAINT project_pk PRIMARY KEY (id)
 );
@@ -158,7 +158,7 @@ CREATE TABLE public.request (
                 description VARCHAR(1000),
                 creation_timestamp TIMESTAMP NOT NULL,
                 serialized_properties TEXT,
-                author_id BIGINT,
+                author_id BIGINT NOT NULL,
 			    CONSTRAINT request_pk PRIMARY KEY (id)
 );
 
@@ -194,7 +194,7 @@ CREATE TABLE public.action_improvement (
 CREATE SEQUENCE public.action_purchase_id_seq;
 CREATE TABLE public.action_purchase (
                 id BIGINT NOT NULL DEFAULT nextval('public.action_purchase_id_seq'),
-                provider_account_id BIGINT NOT NULL,
+                provider_account_id BIGINT ,
                 CONSTRAINT action_purchase_pk PRIMARY KEY (id)
 );
 
@@ -226,10 +226,10 @@ CREATE TABLE public.response (
                 creation_timestamp TIMESTAMP NOT NULL,
                 lock_expiration_timestamp TIMESTAMP,
                 serialized_properties TEXT,
-                author_id BIGINT NOT NULL,
-                assigned_by_id BIGINT NOT NULL,
-                action_id BIGINT NOT NULL,
-                request_id BIGINT NOT NULL,
+                author_id BIGINT ,
+                assigned_by_id BIGINT ,
+                action_id BIGINT ,
+                request_id BIGINT ,
 			    CONSTRAINT response_pk PRIMARY KEY (id)
 );
 
