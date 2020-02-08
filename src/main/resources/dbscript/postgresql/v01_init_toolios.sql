@@ -143,13 +143,13 @@ CREATE TABLE public.project_user_account_map (
                 serialized_properties TEXT,
                 CONSTRAINT project_user_account_map_pk PRIMARY KEY (project_id, user_account_id)
 );
+
 CREATE TABLE public.project_machine_map (
                 project_id BIGINT NOT NULL,
                 machine_id BIGINT NOT NULL,
                 serialized_properties TEXT,
                 CONSTRAINT project_machine_map_pk PRIMARY KEY (project_id, machine_id)
 );
-
 
 CREATE SEQUENCE public.request_id_seq;
 CREATE TABLE public.request (
@@ -194,9 +194,25 @@ CREATE TABLE public.action_improvement (
 CREATE SEQUENCE public.action_purchase_id_seq;
 CREATE TABLE public.action_purchase (
                 id BIGINT NOT NULL DEFAULT nextval('public.action_purchase_id_seq'),
-                provider_account_id BIGINT ,
                 CONSTRAINT action_purchase_pk PRIMARY KEY (id)
 );
+
+CREATE SEQUENCE public.user_order_id_seq;
+CREATE TABLE public.user_order (
+                id BIGINT NOT NULL DEFAULT nextval('public.user_order_id_seq'),
+                quantity BIGINT ,
+                provider_account_id BIGINT ,
+                CONSTRAINT user_order_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE public.action_purchase_order_map (
+                user_order_id BIGINT NOT NULL,
+                action_purchase_id BIGINT NOT NULL,
+                serialized_properties TEXT,
+                CONSTRAINT action_purchase_order_map_pk PRIMARY KEY (user_order_id, action_purchase_id)
+);
+
+
 
 CREATE SEQUENCE public.article_id_seq;
 CREATE TABLE public.article (
@@ -327,7 +343,6 @@ ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-
 ALTER TABLE public.project_user_account_map ADD CONSTRAINT project_project_user_map_fk
 FOREIGN KEY (project_id)
 REFERENCES public.project (id)
@@ -341,7 +356,6 @@ REFERENCES public.user_account (id)
 ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
-
 
 ALTER TABLE public.project_machine_map ADD CONSTRAINT project_map_fk
 FOREIGN KEY (project_id)
@@ -441,13 +455,6 @@ ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.action_purchase ADD CONSTRAINT provider_account_fk
-FOREIGN KEY (provider_account_id)
-REFERENCES public.provider_account (id)
-ON DELETE CASCADE
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
 ALTER TABLE public.article ADD CONSTRAINT article_category_fk
 FOREIGN KEY (article_category_id)
 REFERENCES public.article_category (id)
@@ -456,6 +463,27 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.article ADD CONSTRAINT provider_account_fk
+FOREIGN KEY (provider_account_id)
+REFERENCES public.provider_account (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.action_purchase_order_map ADD CONSTRAINT action_purchase_fk
+FOREIGN KEY (action_purchase_id)
+REFERENCES public.action_purchase (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.action_purchase_order_map ADD CONSTRAINT user_order_fk
+FOREIGN KEY (user_order_id)
+REFERENCES public.user_order (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.user_order ADD CONSTRAINT provider_account_fk
 FOREIGN KEY (provider_account_id)
 REFERENCES public.provider_account (id)
 ON DELETE CASCADE
