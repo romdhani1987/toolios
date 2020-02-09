@@ -201,7 +201,7 @@ CREATE SEQUENCE public.user_order_id_seq;
 CREATE TABLE public.user_order (
                 id BIGINT NOT NULL DEFAULT nextval('public.user_order_id_seq'),
                 quantity BIGINT ,
-                provider_account_id BIGINT ,
+                article_id BIGINT ,
                 CONSTRAINT user_order_pk PRIMARY KEY (id)
 );
 
@@ -245,8 +245,15 @@ CREATE TABLE public.response (
                 author_id BIGINT ,
                 assigned_by_id BIGINT ,
                 action_id BIGINT ,
-                request_id BIGINT ,
-			    CONSTRAINT response_pk PRIMARY KEY (id)
+                CONSTRAINT response_pk PRIMARY KEY (id)
+);
+
+
+CREATE TABLE public.request_response_map (
+                request_id BIGINT NOT NULL,
+                response_id BIGINT NOT NULL,
+                serialized_properties TEXT,
+                CONSTRAINT request_response_map_pk PRIMARY KEY (request_id, response_id)
 );
 
 ALTER TABLE public.user_account ADD CONSTRAINT address_fk
@@ -399,13 +406,6 @@ ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.response ADD CONSTRAINT request_fk
-FOREIGN KEY (request_id)
-REFERENCES public.request (id)
-ON DELETE CASCADE
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
 ALTER TABLE public.anomaly ADD CONSTRAINT anomaly_fk
 FOREIGN KEY (id)
 REFERENCES public.request (id)
@@ -483,9 +483,23 @@ ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.user_order ADD CONSTRAINT provider_account_fk
-FOREIGN KEY (provider_account_id)
-REFERENCES public.provider_account (id)
+ALTER TABLE public.user_order ADD CONSTRAINT article_fk
+FOREIGN KEY (article_id)
+REFERENCES public.article (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.request_response_map ADD CONSTRAINT request_fk
+FOREIGN KEY (request_id)
+REFERENCES public.request (id)
+ON DELETE CASCADE
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.request_response_map ADD CONSTRAINT response_fk
+FOREIGN KEY (response_id)
+REFERENCES public.response (id)
 ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
