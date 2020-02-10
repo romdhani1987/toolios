@@ -3,7 +3,7 @@ package fr.romdhani.aymen.toolios.core.orm;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "GroupActivity")
+@Table(name = "group_activity")
 public class GroupActivity {
     private static final long serialVersionUID = 1L;
     @Id
@@ -11,11 +11,22 @@ public class GroupActivity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "group_activity_name")
     private String name ;
+
+    @Column(name = "serialized_properties")
+    private String serializedProperties;
 
     @OneToOne(mappedBy="groupActivity")
     private GroupActivity groupActivity;
+
+    public String getSerializedProperties() {
+        return this.serializedProperties;
+    }
+
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
+    }
 
     public Long getId() {
         return id;
@@ -39,5 +50,12 @@ public class GroupActivity {
 
     public void setGroupActivity(GroupActivity groupActivity) {
         this.groupActivity = groupActivity;
+    }
+
+    public GroupActivity() {
+    }
+
+    public GroupActivity(String name) {
+        this.name = name;
     }
 }
