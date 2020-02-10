@@ -7,44 +7,56 @@ import java.util.Set;
 /**
  * @author aromdhani
  */
+
 @Entity
 @Table(name = "company")
 public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "company_name")
     private String name ;
 
-    @Column(name = "serial")
+    @Column(name = "company_serial")
     private Long serial ;
 
-    @Column(name = "SIREN")
-    private Long SIREN;
+    @Column(name = "siren")
+    private Long siren;
 
-    @Column(name = "SIRET")
-    private Long SIRET;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "activity_id", referencedColumnName = "id")
-    private Activity activity;
+    @Column(name = "siret")
+    private Long siret;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @OneToMany(mappedBy = "company")
-    private Set<Group> groupSet;
+    private Set<UserGroup> userGroupSet;
 
-    public Set<Group> getGroupSet() {
-        return groupSet;
+    @Column(name = "serialized_properties")
+    private String serializedProperties;
+
+    public Company() {
     }
 
-    public void setGroupList(Set<Group> groupList) {
-        this.groupSet = groupList;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getSerial() {
@@ -55,6 +67,22 @@ public class Company implements Serializable {
         this.serial = serial;
     }
 
+    public Long getSiren() {
+        return siren;
+    }
+
+    public void setSiren(Long siren) {
+        this.siren = siren;
+    }
+
+    public Long getSiret() {
+        return siret;
+    }
+
+    public void setSiret(Long siret) {
+        this.siret = siret;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -63,50 +91,19 @@ public class Company implements Serializable {
         this.address = address;
     }
 
-    public Long getSIREN() {
-        return SIREN;
+    public Set<UserGroup> getUserGroupSet() {
+        return userGroupSet;
     }
 
-    public void setSIREN(Long SIREN) {
-        this.SIREN = SIREN;
+    public void setUserGroupSet(Set<UserGroup> userGroupSet) {
+        this.userGroupSet = userGroupSet;
     }
 
-    public Long getSIRET() {
-        return SIRET;
+    public String getSerializedProperties() {
+        return this.serializedProperties;
     }
 
-    public void setSIRET(Long SIRET) {
-        this.SIRET = SIRET;
-    }
-
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
-    public Company() {
-    }
-
-    public Company(String name) {
-        this.name = name;
-            }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
     }
 }

@@ -28,36 +28,7 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
-    @OneToOne(mappedBy = "address")
-    private User user;
-
-    @OneToOne(mappedBy="account")
-    private Company company;
-
     public Address() {
-    }
-
-    public Address(String street, String code, String city, String country) {
-        this.street = street;
-        this.code = code;
-        this.city = city;
-        this.country = country;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public Long getId() {
