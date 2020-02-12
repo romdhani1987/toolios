@@ -12,13 +12,13 @@ public class Anomaly implements Serializable {
     private String title;
     private String description ;
     private Long id ;
-    private  User author;
-    private  User assigned;
+    private UserAccount author;
+    private UserAccount assigned;
     private Date observedDate;
     public Anomaly() {
     }
 
-    public Anomaly(String name, String description, User author) {
+    public Anomaly(String name, String description, UserAccount author) {
         this.title = name;
         this.description = description;
         this.author = author;
@@ -48,19 +48,19 @@ public class Anomaly implements Serializable {
         this.id = id;
     }
 
-    public User getAuthor() {
+    public UserAccount getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(UserAccount author) {
         this.author = author;
     }
 
-    public User getAssigned() {
+    public UserAccount getAssigned() {
         return assigned;
     }
 
-    public void setAssigned(User assigned) {
+    public void setAssigned(UserAccount assigned) {
         this.assigned = assigned;
     }
 }

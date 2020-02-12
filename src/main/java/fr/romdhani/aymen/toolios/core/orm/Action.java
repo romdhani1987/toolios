@@ -12,7 +12,7 @@ public class Action implements Serializable {
     private String title;
     private String description;
     private Long id;
-    private User author;
+    private UserAccount author;
     private Date startDate;
     private Date plannedDate;
 
@@ -36,7 +36,7 @@ public class Action implements Serializable {
     public Action() {
     }
 
-    public Action(String name, String description, User author) {
+    public Action(String name, String description, UserAccount author) {
         this.title = name;
         this.description = description;
         this.author = author;
@@ -66,11 +66,11 @@ public class Action implements Serializable {
         this.id = id;
     }
 
-    public User getAuthor() {
+    public UserAccount getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(UserAccount author) {
         this.author = author;
     }
 

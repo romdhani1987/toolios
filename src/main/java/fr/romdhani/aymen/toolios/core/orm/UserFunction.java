@@ -19,23 +19,18 @@ public class UserFunction  implements Serializable {
     @Column(name = "name")
     private String name ;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserAccount userAccount;
 
     public UserFunction() {
     }
 
-    public UserFunction(String name, Long id) {
-        this.name = name;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,11 +42,13 @@ public class UserFunction  implements Serializable {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 }
+
+

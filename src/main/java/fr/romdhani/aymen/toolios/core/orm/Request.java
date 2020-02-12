@@ -26,12 +26,12 @@ public class Request implements Serializable {
     @Column(name = "creation_time")
     private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
 
-    private  User author;
+    private UserAccount author;
 
     public Request() {
     }
 
-    public Request(String name, String description, User author) {
+    public Request(String name, String description, UserAccount author) {
         this.title = name;
         this.description = description;
         this.author = author;
@@ -61,11 +61,11 @@ public class Request implements Serializable {
         this.id = id;
     }
 
-    public User getAuthor() {
+    public UserAccount getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(UserAccount author) {
         this.author = author;
     }
 

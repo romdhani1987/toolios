@@ -21,7 +21,7 @@ public class UserResponsibility implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserAccount userAccount;
 
     @OneToMany(mappedBy = "responsibility")
     private Set<Machine> machineSet;
@@ -72,12 +72,12 @@ public class UserResponsibility implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     public Set<Machine> getMachineSet() {

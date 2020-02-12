@@ -32,10 +32,10 @@ public class Project implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User supervisor;
+    private UserAccount supervisor;
 
     @ManyToMany(mappedBy = "userProjectSet")
-    private List<User> involvedUserList;
+    private List<UserAccount> involvedUserAccountList;
 
     public Project() {
     }
@@ -80,20 +80,20 @@ public class Project implements Serializable {
         this.plannedTimestamp = plannedTimestamp;
     }
 
-    public User getSupervisor() {
+    public UserAccount getSupervisor() {
         return supervisor;
     }
 
-    public void setSupervisor(User supervisor) {
+    public void setSupervisor(UserAccount supervisor) {
         this.supervisor = supervisor;
     }
 
-    public List<User> getInvolvedUserList() {
-        return involvedUserList;
+    public List<UserAccount> getInvolvedUserAccountList() {
+        return involvedUserAccountList;
     }
 
-    public void setInvolvedUserList(List<User> involvedUserList) {
-        this.involvedUserList = involvedUserList;
+    public void setInvolvedUserAccountList(List<UserAccount> involvedUserAccountList) {
+        this.involvedUserAccountList = involvedUserAccountList;
     }
 }
 

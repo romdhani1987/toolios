@@ -11,7 +11,7 @@ public class Machine implements Serializable {
     private Long id;
     private MachineLocation machineLocation;
     private MachineType machineType;
-    private User responsible;
+    private UserAccount responsible;
 
     public Machine(String name, Long id) {
         this.name = name;
