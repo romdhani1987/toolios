@@ -56,10 +56,11 @@ public class UserAccount implements Serializable {
     private UserGroup userGroup;
 
 
-    @OneToMany(mappedBy = "user")
-    private Set<UserFunction> functionSet;
+    @ManyToOne
+    @JoinColumn(name = "user_function_id", referencedColumnName = "id")
+    private UserFunction userFuntion;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userAccount")
     private Set<UserResponsibility> responsibilitySet;
 
     // bi-directional many-to-many association

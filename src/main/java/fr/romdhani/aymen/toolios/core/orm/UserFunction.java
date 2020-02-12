@@ -19,10 +19,6 @@ public class UserFunction  implements Serializable {
     @Column(name = "name")
     private String name ;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserAccount userAccount;
-
     public UserFunction() {
     }
 
@@ -42,13 +38,6 @@ public class UserFunction  implements Serializable {
         this.name = name;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-}
+  }
 
 

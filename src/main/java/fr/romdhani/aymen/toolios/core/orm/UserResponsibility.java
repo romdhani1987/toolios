@@ -12,6 +12,7 @@ import java.util.Set;
 @Table(name = "user_responsibility")
 public class UserResponsibility implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,11 +21,12 @@ public class UserResponsibility implements Serializable {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
 
-    @OneToMany(mappedBy = "responsibility")
-    private Set<Machine> machineSet;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "machine_id", referencedColumnName = "id")
+    private Machine machine;
 
     @Column(name = "start_timestamp")
     private Timestamp startTimestamp;
@@ -38,6 +40,38 @@ public class UserResponsibility implements Serializable {
     public UserResponsibility(String name, Long id) {
         this.name = name;
         this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
     }
 
     public Timestamp getStartTimestamp() {
@@ -54,38 +88,6 @@ public class UserResponsibility implements Serializable {
 
     public void setEndTimestamp(Timestamp endTimestamp) {
         this.endTimestamp = endTimestamp;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-
-    public Set<Machine> getMachineSet() {
-        return machineSet;
-    }
-
-    public void setMachineSet(Set<Machine> machineSet) {
-        this.machineSet = machineSet;
     }
 }
 
