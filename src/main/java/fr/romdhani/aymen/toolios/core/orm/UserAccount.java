@@ -65,7 +65,7 @@ public class UserAccount implements Serializable {
 
     // bi-directional many-to-many association
     @ManyToMany
-    @JoinTable(name = "user_project_map", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "project_id") })
+    @JoinTable(name = "project_user_account_map", joinColumns = { @JoinColumn(name = "user_account_id") }, inverseJoinColumns = { @JoinColumn(name = "project_id") })
     private Set<Project> userProjectSet;
 
     @OneToMany(mappedBy = "supervisor")

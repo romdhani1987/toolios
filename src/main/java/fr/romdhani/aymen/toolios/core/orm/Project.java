@@ -24,14 +24,14 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "creation_time")
+    @Column(name = "creation_timestamp")
     private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
 
-    @Column(name = "planned_time")
+    @Column(name = "lock_expiration_timestamp")
     private Timestamp plannedTimestamp;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "supervisor_id")
     private UserAccount supervisor;
 
     @ManyToMany(mappedBy = "userProjectSet")
