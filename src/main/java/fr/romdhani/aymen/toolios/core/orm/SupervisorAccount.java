@@ -23,6 +23,10 @@ public class SupervisorAccount extends UserAccount implements Serializable {
         this.id = id;
     }
 
+
+    @OneToOne(mappedBy = "supervisorAccount")
+    private ProviderAccount providerAccount;
+
     public SupervisorAccount() {
     }
 
