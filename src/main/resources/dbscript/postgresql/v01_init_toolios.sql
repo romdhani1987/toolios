@@ -208,7 +208,6 @@ CREATE TABLE public.user_order (
 CREATE TABLE public.action_purchase_order_map (
                 user_order_id BIGINT NOT NULL,
                 action_purchase_id BIGINT NOT NULL,
-                serialized_properties TEXT,
                 CONSTRAINT action_purchase_order_map_pk PRIMARY KEY (user_order_id, action_purchase_id)
 );
 
@@ -229,7 +228,6 @@ CREATE TABLE public.article (
 CREATE SEQUENCE public.article_category_id_seq;
 CREATE TABLE public.article_category (
                 id BIGINT NOT NULL DEFAULT nextval('public.article_category_id_seq'),
-                provider_account_id BIGINT NOT NULL,
                 CONSTRAINT article_category_pk PRIMARY KEY (id)
 );
 
@@ -435,7 +433,7 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.provider_account ADD CONSTRAINT created_by_id_fk
-FOREIGN KEY (id)
+FOREIGN KEY (created_by_id)
 REFERENCES public.supervisor_account (id)
 ON DELETE CASCADE
 ON UPDATE NO ACTION
