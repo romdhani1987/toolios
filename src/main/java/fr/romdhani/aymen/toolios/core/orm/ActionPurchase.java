@@ -18,7 +18,7 @@ public class ActionPurchase extends UserAction implements Serializable {
     private Long id;
     // bi-directional many-to-many association
     @ManyToMany
-    @JoinTable(name = "action_purchase_order_map", joinColumns = { @JoinColumn(name = "user_order_id") }, inverseJoinColumns = { @JoinColumn(name = "action_purchase_id") })
+    @JoinTable(name = "action_purchase_order_map", joinColumns = { @JoinColumn(name = "action_purchase_id") }, inverseJoinColumns = { @JoinColumn(name = "user_order_id") })
     private Set<UserOrder> userOrdersSet;
 
     public ActionPurchase() {
