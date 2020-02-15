@@ -100,4 +100,27 @@ public class Response implements Serializable {
         this.author = author;
     }
 
+    public SupervisorAccount getSupervisorAccount() {
+        return supervisorAccount;
+    }
+
+    public void setSupervisorAccount(SupervisorAccount supervisorAccount) {
+        this.supervisorAccount = supervisorAccount;
+    }
+
+    public UserAction getUserAction() {
+        return userAction;
+    }
+
+    public void setUserAction(UserAction userAction) {
+        this.userAction = userAction;
+    }
+
+    public Set<Request> getRequestSetSet() {
+        return requestSetSet;
+    }
+
+    public void setRequestSetSet(Set<Request> requestSetSet) {
+        this.requestSetSet = requestSetSet;
+    }
 }

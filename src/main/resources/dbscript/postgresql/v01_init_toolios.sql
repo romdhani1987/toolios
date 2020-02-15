@@ -11,7 +11,6 @@ CREATE TABLE public.user_account (
                 serialized_properties TEXT,
 				address_id BIGINT ,
 				user_function_id BIGINT ,
-				user_responsibility_id BIGINT,
 				group_id BIGINT,
 				CONSTRAINT user_account_pk PRIMARY KEY (id)
 );
@@ -263,12 +262,6 @@ ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.user_account ADD CONSTRAINT user_responsibility_fk
-FOREIGN KEY (user_responsibility_id)
-REFERENCES public.user_responsibility (id)
-ON DELETE CASCADE
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
 
 ALTER TABLE public.user_account ADD CONSTRAINT group_fk
 FOREIGN KEY (group_id)

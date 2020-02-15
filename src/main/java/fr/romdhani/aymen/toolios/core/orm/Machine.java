@@ -39,6 +39,9 @@ public class Machine implements Serializable {
     @ManyToMany(mappedBy = "machineSet")
     private Set<Project> projectSet;
 
+    @OneToOne(mappedBy = "machine")
+    private UserResponsibility userResponsibility;
+
     public Machine() {
     }
 

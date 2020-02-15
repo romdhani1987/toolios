@@ -17,7 +17,7 @@ public class UserResponsibility implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "user_responsibility_name")
     private String name;
 
     @ManyToOne
@@ -31,63 +31,11 @@ public class UserResponsibility implements Serializable {
     @Column(name = "start_timestamp")
     private Timestamp startTimestamp;
 
-    @Column(name = "end_timestamp")
-    private Timestamp endTimestamp;
+    @Column(name = "stop_timestamp")
+    private Timestamp stopTimestamp;
 
-    public UserResponsibility() {
-    }
+    @Column(name = "serialized_properties")
+    private String serializedProperties;
 
-    public UserResponsibility(String name, Long id) {
-        this.name = name;
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-
-    public Machine getMachine() {
-        return machine;
-    }
-
-    public void setMachine(Machine machine) {
-        this.machine = machine;
-    }
-
-    public Timestamp getStartTimestamp() {
-        return startTimestamp;
-    }
-
-    public void setStartTimestamp(Timestamp startTimestamp) {
-        this.startTimestamp = startTimestamp;
-    }
-
-    public Timestamp getEndTimestamp() {
-        return endTimestamp;
-    }
-
-    public void setEndTimestamp(Timestamp endTimestamp) {
-        this.endTimestamp = endTimestamp;
-    }
 }
 
