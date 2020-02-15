@@ -18,9 +18,6 @@ public class Activity implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "company")
-    private Company company;
-
     public Activity() {
     }
 
@@ -30,14 +27,6 @@ public class Activity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public Activity(String name) {

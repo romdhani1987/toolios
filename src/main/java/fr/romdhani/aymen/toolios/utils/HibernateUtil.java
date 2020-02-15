@@ -1,6 +1,6 @@
 package fr.romdhani.aymen.toolios.utils;
 
-import fr.romdhani.aymen.toolios.core.orm.UserAccount;
+import fr.romdhani.aymen.toolios.core.orm.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -26,7 +26,31 @@ public class HibernateUtil {
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 configuration.setProperties(settings);
+                configuration.addAnnotatedClass(ActionImprovement.class);
+                configuration.addAnnotatedClass(ActionPurchase.class);
+                configuration.addAnnotatedClass(Activity.class);
+                configuration.addAnnotatedClass(Address.class);
+                configuration.addAnnotatedClass(Anomaly.class);
+                configuration.addAnnotatedClass(Article.class);
+                configuration.addAnnotatedClass(ArticleCategory.class);
+                configuration.addAnnotatedClass(Company.class);
+                configuration.addAnnotatedClass(GroupActivity.class);
+                configuration.addAnnotatedClass(Machine.class);
+                configuration.addAnnotatedClass(MachineLocation.class);
+                configuration.addAnnotatedClass(MachineType.class);
+                configuration.addAnnotatedClass(Project.class);
+                configuration.addAnnotatedClass(ProviderAccount.class);
+                configuration.addAnnotatedClass(Purchase.class);
+                configuration.addAnnotatedClass(Request.class);
+                configuration.addAnnotatedClass(Response.class);
+                configuration.addAnnotatedClass(SimpleUserAccount.class);
+                configuration.addAnnotatedClass(SupervisorAccount.class);
                 configuration.addAnnotatedClass(UserAccount.class);
+                configuration.addAnnotatedClass(UserAction.class);
+                configuration.addAnnotatedClass(UserFunction.class);
+                configuration.addAnnotatedClass(UserGroup.class);
+                configuration.addAnnotatedClass(UserOrder.class);
+                configuration.addAnnotatedClass(UserResponsibility.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
