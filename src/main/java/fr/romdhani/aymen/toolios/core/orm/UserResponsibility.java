@@ -37,5 +37,63 @@ public class UserResponsibility implements Serializable {
     @Column(name = "serialized_properties")
     private String serializedProperties;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
+    }
+
+    public Timestamp getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(Timestamp startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public Timestamp getStopTimestamp() {
+        return stopTimestamp;
+    }
+
+    public void setStopTimestamp(Timestamp stopTimestamp) {
+        this.stopTimestamp = stopTimestamp;
+    }
+
+    public String getSerializedProperties() {
+        return serializedProperties;
+    }
+
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
+    }
+
+    public UserResponsibility() {
+    }
 }
 

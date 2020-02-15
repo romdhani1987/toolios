@@ -100,4 +100,5 @@ public class Machine implements Serializable {
     public void setProjectSet(Set<Project> projectSet) {
         this.projectSet = projectSet;
     }
+
 }
