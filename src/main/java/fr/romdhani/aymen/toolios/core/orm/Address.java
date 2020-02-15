@@ -28,6 +28,9 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
+    @OneToOne(mappedBy = "address")
+    private UserAccount userAccount;
+
     public Address() {
     }
 

@@ -47,7 +47,7 @@ public class UserAccount implements Serializable {
     @Column(name = "serialized_properties")
     private String serializedProperties;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
