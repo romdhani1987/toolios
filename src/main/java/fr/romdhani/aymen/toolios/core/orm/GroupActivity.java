@@ -18,7 +18,7 @@ public class GroupActivity {
     private String serializedProperties;
 
     @OneToOne(mappedBy="groupActivity")
-    private GroupActivity groupActivity;
+    private UserGroup UserGroup;
 
     public String getSerializedProperties() {
         return this.serializedProperties;
@@ -44,18 +44,19 @@ public class GroupActivity {
         this.name = name;
     }
 
-    public GroupActivity getGroupActivity() {
-        return groupActivity;
-    }
-
-    public void setGroupActivity(GroupActivity groupActivity) {
-        this.groupActivity = groupActivity;
-    }
 
     public GroupActivity() {
     }
 
     public GroupActivity(String name) {
         this.name = name;
+    }
+
+    public UserGroup getUserGroup() {
+        return UserGroup;
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+        UserGroup = userGroup;
     }
 }

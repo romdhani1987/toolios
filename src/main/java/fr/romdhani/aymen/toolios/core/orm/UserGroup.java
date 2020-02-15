@@ -2,7 +2,6 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * @author aromdhani

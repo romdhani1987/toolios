@@ -1,21 +1,46 @@
 package fr.romdhani.aymen.toolios.core.orm;
 
+import javax.persistence.*;
 import java.io.Serializable;
-
 /**
  * @author aromdhani
  */
 
+@Entity
+@Table(name = "machine")
 public class Machine implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String name;
-    private Long id;
-    private MachineLocation machineLocation;
-    private MachineType machineType;
-    private UserAccount responsible;
 
-    public Machine(String name, Long id) {
-        this.name = name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "machine_name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "serialized_properties")
+    private String serializedProperties;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "machine_type_id", referencedColumnName = "id")
+    private MachineType machineType;
+
+    public Machine() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,20 +52,28 @@ public class Machine implements Serializable {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public String getDescription() {
+        return description;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public MachineLocation getMachineLocation() {
-        return machineLocation;
+    public String getSerializedProperties() {
+        return serializedProperties;
     }
 
-    public void setMachineLocation(MachineLocation machineLocation) {
-        this.machineLocation = machineLocation;
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public MachineType getMachineType() {
@@ -49,8 +82,5 @@ public class Machine implements Serializable {
 
     public void setMachineType(MachineType machineType) {
         this.machineType = machineType;
-    }
-
-    public Machine() {
     }
 }
