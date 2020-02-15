@@ -35,4 +35,19 @@ public class SupervisorAccount extends UserAccount implements Serializable {
     public SupervisorAccount() {
     }
 
+    public ProviderAccount getProviderAccount() {
+        return providerAccount;
+    }
+
+    public void setProviderAccount(ProviderAccount providerAccount) {
+        this.providerAccount = providerAccount;
+    }
+
+    public Set<Project> getProjectSets() {
+        return projectSets;
+    }
+
+    public void setProjectSets(Set<Project> projectSets) {
+        this.projectSets = projectSets;
+    }
 }
