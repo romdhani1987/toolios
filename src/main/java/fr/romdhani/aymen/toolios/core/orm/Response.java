@@ -1,17 +1,22 @@
 package fr.romdhani.aymen.toolios.core.orm;
 
+import de.erichseifert.gral.ui.ExportDialog;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
- *
  * @author aromdhani
  */
 @Entity
 @Table(name = "response")
 public class Response implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -21,68 +26,38 @@ public class Response implements Serializable {
     private String title;
 
     @Column(name = "description")
-    private String description;
+    private String  description;
 
-    @Column(name = "startDate")
-    private Date startDate;
+    @Column(name = "creation_timestamp")
+    private Timestamp creationTimestamp = new Timestamp(new Date().getTime());
 
-    @Column(name = "endDate")
-    private Date endDate;
+    @Column(name = "serialized_properties")
+    private String serializedProperties;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "action_id", referencedColumnName = "id")
-    private Action action;
+    @OneToOne
+    @JoinColumn(name = "author_id")
+    private UserAccount author;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "anomaly_id", referencedColumnName = "id")
-    private Anomaly anomaly;
+    @OneToOne
+    @JoinColumn(name = "assigned_by_id")
+    private SupervisorAccount supervisorAccount;
 
-    public Date getEndDate() {
-        return endDate;
-    }
+    @ManyToOne
+    @JoinColumn(name = "action_id")
+    private UserAction userAction;
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Action getAction() {
-        return action;
-    }
-
-    public void setAction(Action action) {
-        this.action = action;
-    }
-
-    public Anomaly getAnomaly() {
-        return anomaly;
-    }
-
-    public void setAnomaly(Anomaly anomaly) {
-        this.anomaly = anomaly;
-    }
-
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+    @ManyToMany(mappedBy = "responseSet")
+    private Set<Request> requestSetSet;
 
     public Response() {
     }
 
-    public Response(String name, String description) {
-        this.title = name;
-        this.description = description;
+    public Long getId() {
+        return id;
     }
 
-    public Response(String title, Date startDate, Action action, Anomaly anomaly) {
-        this.title = title;
-        this.startDate = startDate;
-        this.action = action;
-        this.anomaly = anomaly;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -101,13 +76,28 @@ public class Response implements Serializable {
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
+    public Timestamp getCreationTimestamp() {
+        return creationTimestamp;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCreationTimestamp(Timestamp creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public String getSerializedProperties() {
+        return serializedProperties;
+    }
+
+    public void setSerializedProperties(String serializedProperties) {
+        this.serializedProperties = serializedProperties;
+    }
+
+    public UserAccount getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserAccount author) {
+        this.author = author;
     }
 
 }
-

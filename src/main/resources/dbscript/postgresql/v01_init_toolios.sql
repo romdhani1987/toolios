@@ -145,7 +145,6 @@ CREATE TABLE public.project_user_account_map (
 CREATE TABLE public.project_machine_map (
                 project_id BIGINT NOT NULL,
                 machine_id BIGINT NOT NULL,
-                serialized_properties TEXT,
                 CONSTRAINT project_machine_map_pk PRIMARY KEY (project_id, machine_id)
 );
 
@@ -236,7 +235,6 @@ CREATE TABLE public.response (
                 title VARCHAR(250) NOT NULL,
                 description VARCHAR(1000),
                 creation_timestamp TIMESTAMP NOT NULL,
-                lock_expiration_timestamp TIMESTAMP,
                 serialized_properties TEXT,
                 author_id BIGINT ,
                 assigned_by_id BIGINT ,
@@ -248,7 +246,6 @@ CREATE TABLE public.response (
 CREATE TABLE public.request_response_map (
                 request_id BIGINT NOT NULL,
                 response_id BIGINT NOT NULL,
-                serialized_properties TEXT,
                 CONSTRAINT request_response_map_pk PRIMARY KEY (request_id, response_id)
 );
 

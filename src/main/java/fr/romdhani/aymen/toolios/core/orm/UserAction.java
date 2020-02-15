@@ -37,6 +37,9 @@ public class UserAction implements Serializable {
     @Column(name = "serialized_properties")
     private String serializedProperties;
 
+    @OneToMany(mappedBy = "userAction")
+    private Set<Response> ResponseSet;
+
     public UserAction() {
     }
 
@@ -86,5 +89,13 @@ public class UserAction implements Serializable {
 
     public void setSerializedProperties(String serializedProperties) {
         this.serializedProperties = serializedProperties;
+    }
+
+    public Set<Response> getResponseSet() {
+        return ResponseSet;
+    }
+
+    public void setResponseSet(Set<Response> responseSet) {
+        ResponseSet = responseSet;
     }
 }

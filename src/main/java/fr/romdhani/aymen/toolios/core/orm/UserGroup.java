@@ -2,6 +2,7 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author aromdhani
@@ -27,8 +28,12 @@ public class UserGroup implements Serializable {
     @JoinColumn(name = "company_id")
     private Company company;
 
+
     @Column(name = "serialized_properties")
     private String serializedProperties;
+
+    @OneToMany(mappedBy = "userGroup")
+    private Set<UserAccount> userAccountSet;
 
     public Long getId() {
         return id;
@@ -68,6 +73,14 @@ public class UserGroup implements Serializable {
 
     public void setSerializedProperties(String serializedProperties) {
         this.serializedProperties = serializedProperties;
+    }
+
+    public Set<UserAccount> getUserAccountSet() {
+        return userAccountSet;
+    }
+
+    public void setUserAccountSet(Set<UserAccount> userAccountSet) {
+        this.userAccountSet = userAccountSet;
     }
 
     public UserGroup() {

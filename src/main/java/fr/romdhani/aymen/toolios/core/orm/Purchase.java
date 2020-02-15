@@ -2,14 +2,13 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * @author aromdhani
  */
 @Entity
-@Table(name = "anomaly")
-public class Anomaly extends Request implements Serializable {
+@Table(name = "purchase")
+public class Purchase extends Request implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -17,7 +16,7 @@ public class Anomaly extends Request implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    public Anomaly() {
+    public Purchase() {
     }
     public Long getId() {
         return id;

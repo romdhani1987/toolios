@@ -36,7 +36,7 @@ public class Project implements Serializable {
     private SupervisorAccount supervisor;
 
     @ManyToMany(mappedBy = "userProjectSet")
-    private List<UserAccount> involvedUserAccountList;
+    private List<UserAccount> involvedUserAccountSet;
 
     // bi-directional many-to-many association
     @ManyToMany
@@ -87,11 +87,11 @@ public class Project implements Serializable {
     }
 
     public List<UserAccount> getInvolvedUserAccountList() {
-        return involvedUserAccountList;
+        return involvedUserAccountSet;
     }
 
-    public void setInvolvedUserAccountList(List<UserAccount> involvedUserAccountList) {
-        this.involvedUserAccountList = involvedUserAccountList;
+    public void setInvolvedUserAccountSet(List<UserAccount> involvedUserAccountSet) {
+        this.involvedUserAccountSet = involvedUserAccountSet;
     }
 }
 
