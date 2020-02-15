@@ -2,6 +2,7 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author aromdhani
@@ -26,6 +27,10 @@ public class SupervisorAccount extends UserAccount implements Serializable {
 
     @OneToOne(mappedBy = "supervisorAccount")
     private ProviderAccount providerAccount;
+
+    // bi-directional many-to-one association to project
+    @OneToMany(mappedBy = "supervisor")
+    private Set<Project> projectSets;
 
     public SupervisorAccount() {
     }

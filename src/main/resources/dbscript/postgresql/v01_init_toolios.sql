@@ -131,7 +131,6 @@ CREATE TABLE public.project (
                 description VARCHAR(1000),
                 creation_timestamp TIMESTAMP NOT NULL,
                 lock_expiration_timestamp TIMESTAMP,
-                author_id BIGINT NOT NULL,
 				supervisor_id BIGINT ,
 				serialized_properties TEXT,
                 CONSTRAINT project_pk PRIMARY KEY (id)
@@ -140,7 +139,6 @@ CREATE TABLE public.project (
 CREATE TABLE public.project_user_account_map (
                 project_id BIGINT NOT NULL,
                 user_account_id BIGINT NOT NULL,
-                serialized_properties TEXT,
                 CONSTRAINT project_user_account_map_pk PRIMARY KEY (project_id, user_account_id)
 );
 
@@ -330,13 +328,6 @@ NOT DEFERRABLE;
 ALTER TABLE public.machine ADD CONSTRAINT machine_type_fk
 FOREIGN KEY (machine_type_id)
 REFERENCES public.machine_type (id)
-ON DELETE CASCADE
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE public.project ADD CONSTRAINT author_id_fk
-FOREIGN KEY (author_id)
-REFERENCES public.user_account (id)
 ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

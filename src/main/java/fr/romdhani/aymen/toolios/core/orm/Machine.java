@@ -2,6 +2,9 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author aromdhani
  */
@@ -32,6 +35,9 @@ public class Machine implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "machine_type_id", referencedColumnName = "id")
     private MachineType machineType;
+
+    @ManyToMany(mappedBy = "machineSet")
+    private Set<Project> projectSet;
 
     public Machine() {
     }
@@ -82,5 +88,13 @@ public class Machine implements Serializable {
 
     public void setMachineType(MachineType machineType) {
         this.machineType = machineType;
+    }
+
+    public Set<Project> getProjectSet() {
+        return projectSet;
+    }
+
+    public void setProjectSet(Set<Project> projectSet) {
+        this.projectSet = projectSet;
     }
 }

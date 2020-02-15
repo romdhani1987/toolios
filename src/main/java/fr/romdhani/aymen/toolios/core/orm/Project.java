@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.sql.Timestamp;
+import java.util.Set;
 
 /**
  * @author aromdhani
@@ -32,10 +33,15 @@ public class Project implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
-    private UserAccount supervisor;
+    private SupervisorAccount supervisor;
 
     @ManyToMany(mappedBy = "userProjectSet")
     private List<UserAccount> involvedUserAccountList;
+
+    // bi-directional many-to-many association
+    @ManyToMany
+    @JoinTable(name = "project_machine_map", joinColumns = { @JoinColumn(name = "project_id") }, inverseJoinColumns = { @JoinColumn(name = "machine_id") })
+    private Set<Machine> machineSet;
 
     public Project() {
     }
@@ -78,14 +84,6 @@ public class Project implements Serializable {
 
     public void setPlannedTimestamp(Timestamp plannedTimestamp) {
         this.plannedTimestamp = plannedTimestamp;
-    }
-
-    public UserAccount getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(UserAccount supervisor) {
-        this.supervisor = supervisor;
     }
 
     public List<UserAccount> getInvolvedUserAccountList() {
