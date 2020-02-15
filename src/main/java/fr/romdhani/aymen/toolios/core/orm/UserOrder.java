@@ -24,6 +24,9 @@ public class UserOrder implements Serializable {
     @JoinColumn(name = "article_id", referencedColumnName = "id")
     private Article article;
 
+    // bi-directional many-to-many association
+    @ManyToMany(mappedBy = "userOrdersSet")
+    private Set<ActionPurchase> ActionPurchaseSet;
 
     @Column(name = "serialized_properties")
     private String serializedProperties;
@@ -43,6 +46,31 @@ public class UserOrder implements Serializable {
     public void setSerializedProperties(String serializedProperties) {
         this.serializedProperties = serializedProperties;
     }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public Set<ActionPurchase> getActionPurchaseSet() {
+        return ActionPurchaseSet;
+    }
+
+    public void setActionPurchaseSet(Set<ActionPurchase> actionPurchaseSet) {
+        ActionPurchaseSet = actionPurchaseSet;
+    }
+
     public UserOrder() {
     }
 

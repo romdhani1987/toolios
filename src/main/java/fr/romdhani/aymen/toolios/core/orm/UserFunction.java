@@ -2,6 +2,7 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  *
@@ -18,6 +19,9 @@ public class UserFunction  implements Serializable {
 
     @Column(name = "name")
     private String name ;
+
+    @OneToMany(mappedBy = "userFuntion")
+    private Set<UserAccount> userAccountSet;
 
     public UserFunction() {
     }
@@ -38,6 +42,13 @@ public class UserFunction  implements Serializable {
         this.name = name;
     }
 
-  }
+    public Set<UserAccount> getUserAccountSet() {
+        return userAccountSet;
+    }
+
+    public void setUserAccountSet(Set<UserAccount> userAccountSet) {
+        this.userAccountSet = userAccountSet;
+    }
+}
 
 
