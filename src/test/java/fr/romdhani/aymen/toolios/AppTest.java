@@ -40,7 +40,7 @@ public class AppTest
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             UserAccount userAccount = new UserAccount();
-            userAccount.setfName("aymen");
+            userAccount.setfName("sarah");
             transaction = session.beginTransaction();
             // save the object
             session.save(userAccount);
