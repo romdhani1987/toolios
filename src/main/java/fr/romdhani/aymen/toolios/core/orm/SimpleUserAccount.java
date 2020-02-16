@@ -27,4 +27,10 @@ public class SimpleUserAccount extends UserAccount implements Serializable {
     public SimpleUserAccount() {
     }
 
+    @Override
+    public String toString() {
+        return "SimpleUserAccount{" +
+                "id=" + id +
+                '}';
+    }
 }

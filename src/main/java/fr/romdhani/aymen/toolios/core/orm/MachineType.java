@@ -48,4 +48,13 @@ public class MachineType implements Serializable {
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
+
+    @Override
+    public String toString() {
+        return "MachineType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", machine=" + machine +
+                '}';
+    }
 }

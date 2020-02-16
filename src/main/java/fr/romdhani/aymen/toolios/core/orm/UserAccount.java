@@ -204,4 +204,21 @@ public class UserAccount implements Serializable {
     public void setRequestSet(Set<Request> requestSet) {
         this.requestSet = requestSet;
     }
+
+    @Override
+    public String toString() {
+        return "UserAccount{" +
+                "id=" + id +
+                ", creationMode='" + creationMode + '\'' +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", userGroup=" + userGroup +
+                ", userFuntion=" + userFuntion +
+                ", userProjectSet=" + userProjectSet +
+                ", requestSet=" + requestSet +
+                '}';
+    }
 }

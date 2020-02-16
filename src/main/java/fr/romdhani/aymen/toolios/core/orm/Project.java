@@ -93,5 +93,17 @@ public class Project implements Serializable {
     public void setInvolvedUserAccountSet(List<UserAccount> involvedUserAccountSet) {
         this.involvedUserAccountSet = involvedUserAccountSet;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", supervisor=" + supervisor +
+                ", involvedUserAccountSet=" + involvedUserAccountSet +
+                ", machineSet=" + machineSet +
+                '}';
+    }
 }
 

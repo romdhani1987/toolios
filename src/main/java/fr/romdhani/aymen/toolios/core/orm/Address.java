@@ -73,4 +73,16 @@ public class Address implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", code='" + code + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", userAccount=" + userAccount +
+                '}';
+    }
 }

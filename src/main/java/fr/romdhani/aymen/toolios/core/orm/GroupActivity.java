@@ -59,4 +59,14 @@ public class GroupActivity {
     public void setUserGroup(UserGroup userGroup) {
         UserGroup = userGroup;
     }
+
+    @Override
+    public String toString() {
+        return "GroupActivity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", serializedProperties='" + serializedProperties + '\'' +
+                ", UserGroup=" + UserGroup +
+                '}';
+    }
 }

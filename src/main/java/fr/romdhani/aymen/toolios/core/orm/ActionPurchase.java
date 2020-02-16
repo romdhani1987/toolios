@@ -38,4 +38,12 @@ public class ActionPurchase extends UserAction implements Serializable {
     public void setUserOrdersSet(Set<UserOrder> userOrdersSet) {
         this.userOrdersSet = userOrdersSet;
     }
+
+    @Override
+    public String toString() {
+        return "ActionPurchase{" +
+                "id=" + id +
+                ", userOrdersSet=" + userOrdersSet +
+                '}';
+    }
 }

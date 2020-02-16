@@ -124,4 +124,12 @@ public class Response implements Serializable {
         this.requestSetSet = requestSetSet;
     }
 
+    @Override
+    public String toString() {
+        return "Response{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

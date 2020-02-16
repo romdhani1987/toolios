@@ -33,4 +33,12 @@ public class MachineLocation implements Serializable {
         this.name = name;
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "MachineLocation{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

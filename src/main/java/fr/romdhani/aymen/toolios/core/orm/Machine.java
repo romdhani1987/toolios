@@ -101,4 +101,17 @@ public class Machine implements Serializable {
         this.projectSet = projectSet;
     }
 
+    @Override
+    public String toString() {
+        return "Machine{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", serializedProperties='" + serializedProperties + '\'' +
+                ", address=" + address +
+                ", machineType=" + machineType +
+                ", projectSet=" + projectSet +
+                ", userResponsibility=" + userResponsibility +
+                '}';
+    }
 }

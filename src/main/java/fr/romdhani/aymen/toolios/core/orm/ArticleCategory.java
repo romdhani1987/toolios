@@ -39,4 +39,12 @@ public class ArticleCategory {
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleCategory{" +
+                "id=" + id +
+                ", articles=" + articles +
+                '}';
+    }
 }

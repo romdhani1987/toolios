@@ -26,4 +26,10 @@ public class Anomaly extends Request implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Anomaly{" +
+                "id=" + id +
+                '}';
+    }
 }

@@ -113,4 +113,16 @@ public class ProviderAccount {
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
     }
+
+    @Override
+    public String toString() {
+        return "ProviderAccount{" +
+                "id=" + id +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", supervisorAccount=" + supervisorAccount +
+                '}';
+    }
 }

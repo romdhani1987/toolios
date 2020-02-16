@@ -25,4 +25,10 @@ public class Purchase extends Request implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "id=" + id +
+                '}';
+    }
 }

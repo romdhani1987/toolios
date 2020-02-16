@@ -74,4 +74,12 @@ public class UserOrder implements Serializable {
     public UserOrder() {
     }
 
+    @Override
+    public String toString() {
+        return "UserOrder{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", article=" + article +
+                '}';
+    }
 }

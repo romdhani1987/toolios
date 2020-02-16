@@ -49,6 +49,14 @@ public class UserFunction  implements Serializable {
     public void setUserAccountSet(Set<UserAccount> userAccountSet) {
         this.userAccountSet = userAccountSet;
     }
+
+    @Override
+    public String toString() {
+        return "UserFunction{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
 
 

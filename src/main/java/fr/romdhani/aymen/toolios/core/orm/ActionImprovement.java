@@ -28,5 +28,10 @@ public class ActionImprovement  extends UserAction implements Serializable {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "ActionImprovement{" +
+                "id=" + id +
+                '}';
+    }
 }

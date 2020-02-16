@@ -106,4 +106,18 @@ public class Company implements Serializable {
     public void setSerializedProperties(String serializedProperties) {
         this.serializedProperties = serializedProperties;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", serial=" + serial +
+                ", siren=" + siren +
+                ", siret=" + siret +
+                ", address=" + address +
+                ", userGroupSet=" + userGroupSet +
+                ", serializedProperties='" + serializedProperties + '\'' +
+                '}';
+    }
 }

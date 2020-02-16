@@ -118,4 +118,19 @@ public class Article implements Serializable {
     public void setOrdersSet(Set<UserOrder> ordersSet) {
         this.ordersSet = ordersSet;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", priceHt=" + priceHt +
+                ", priceTtc=" + priceTtc +
+                ", providerAccount=" + providerAccount +
+                ", articleCategory=" + articleCategory +
+                ", serializedProperties='" + serializedProperties + '\'' +
+                ", ordersSet=" + ordersSet +
+                '}';
+    }
 }

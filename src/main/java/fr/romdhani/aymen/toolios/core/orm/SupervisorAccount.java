@@ -50,4 +50,12 @@ public class SupervisorAccount extends UserAccount implements Serializable {
     public void setProjectSets(Set<Project> projectSets) {
         this.projectSets = projectSets;
     }
+
+    @Override
+    public String toString() {
+        return "SupervisorAccount{" +
+                "id=" + id +
+                ", projectSets=" + projectSets +
+                '}';
+    }
 }

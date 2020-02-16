@@ -98,4 +98,14 @@ public class UserAction implements Serializable {
     public void setResponseSet(Set<Response> responseSet) {
         ResponseSet = responseSet;
     }
+
+    @Override
+    public String toString() {
+        return "UserAction{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", ResponseSet=" + ResponseSet +
+                '}';
+    }
 }

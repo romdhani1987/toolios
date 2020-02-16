@@ -95,5 +95,15 @@ public class UserResponsibility implements Serializable {
 
     public UserResponsibility() {
     }
+
+    @Override
+    public String toString() {
+        return "UserResponsibility{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userAccount=" + userAccount +
+                ", machine=" + machine +
+                '}';
+    }
 }
 

@@ -89,4 +89,13 @@ public class UserGroup implements Serializable {
     public UserGroup(Company company) {
         this.company = company;
     }
+
+    @Override
+    public String toString() {
+        return "UserGroup{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", groupActivity=" + groupActivity +
+                '}';
+    }
 }
