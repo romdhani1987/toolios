@@ -2,6 +2,7 @@ package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -220,5 +221,19 @@ public class UserAccount implements Serializable {
                 ", userProjectSet=" + userProjectSet +
                 ", requestSet=" + requestSet +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserAccount)) return false;
+        UserAccount that = (UserAccount) o;
+        return id == that.id &&
+                login.equals(that.login);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login);
     }
 }
