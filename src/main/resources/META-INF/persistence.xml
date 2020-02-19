@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="toolios_db" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>fr.romdhani.aymen.toolios.core.orm.ActionImprovement</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.ActionPurchase</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Activity</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Address</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Anomaly</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Article</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.ArticleCategory</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Company</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.GroupActivity</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Machine</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.MachineType</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Project</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.ProviderAccount</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Purchase</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Request</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.Response</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.SimpleUserAccount</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.SupervisorAccount</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.UserAccount</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.UserFunction</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.UserGroup</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.UserOrder</class>
+        <class>fr.romdhani.aymen.toolios.core.orm.UserResponsibility</class>
+    </persistence-unit>
+ </persistence>
