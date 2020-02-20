@@ -28,10 +28,7 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
-    @OneToOne(mappedBy = "address")
-    private UserAccount userAccount;
-
-    public Address() {
+       public Address() {
     }
 
     public Long getId() {
@@ -82,7 +79,6 @@ public class Address implements Serializable {
                 ", code='" + code + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
-                ", userAccount=" + userAccount +
-                '}';
+                               '}';
     }
 }

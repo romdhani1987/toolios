@@ -20,8 +20,7 @@
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 				<excludes>
-					<exclude>META-INF/**</exclude>
-					<exclude>**/documentation/*.pdf</exclude>
+				    <exclude>**/documentation/*.pdf</exclude>
 					<exclude>**/images/*.png</exclude>
 					<exclude>**/*.json</exclude>
 				</excludes>
@@ -251,8 +250,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.3.7.Final</version>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.1.5.Final</version>
 		</dependency>
 	</dependencies>
 </project>

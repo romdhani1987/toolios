@@ -1,12 +1,9 @@
 package fr.romdhani.aymen.toolios;
 
 
-import fr.romdhani.aymen.toolios.core.orm.UserAccount;
-import fr.romdhani.aymen.toolios.utils.HibernateUtil;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 ;
@@ -37,7 +34,7 @@ public class AppTest
      */
     public void testApp() {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        /*try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             UserAccount userAccount = new UserAccount();
             userAccount.setfName("sarah");
@@ -51,6 +48,6 @@ public class AppTest
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
+        }*/
     }
 }
