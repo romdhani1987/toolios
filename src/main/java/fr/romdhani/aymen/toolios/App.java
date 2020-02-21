@@ -1,16 +1,16 @@
 package fr.romdhani.aymen.toolios;
 
-import com.sun.prism.paint.Gradient;
-import fr.romdhani.aymen.toolios.core.orm.*;
 
-
+import fr.romdhani.aymen.toolios.core.orm.Project;
+import fr.romdhani.aymen.toolios.core.orm.UserAccount;
+import fr.romdhani.aymen.toolios.core.orm.UserFunction;
 import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 
@@ -24,20 +24,24 @@ public class App {
         System.out.println("Start Toolios!");
         EntityManagerFactory emf = Persistence
                 .createEntityManagerFactory("toolios-db");
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
         UserFunction userFunction = new UserFunction();
-        userFunction.setName("software dev");
-        UserAccount userAccount = new UserAccount("rom");
-        userAccount.setlName("romdhani");
-        userAccount.setfName("aymen");
-        userAccount.setUserFuntion(userFunction);
+        userFunction.setFunction_name("software dev");
+        UserAccount userAccount = new UserAccount("test");
+        userAccount.setL_name("romdhani");
+        userAccount.setF_name("aymen");
+        userAccount.setUser_function(userFunction);
         Project project = new Project();
         project.setTitle("test");
-        Set<Project> projectSet = new HashSet<>();
-        projectSet.add(project);
-        userAccount.setUserProjectSet(projectSet);
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        project.setCreation_timestamp(ts);
+        userAccount.setORM_Project(Set.of(project));
+        em.persist(project);
         em.persist(userAccount);
         em.getTransaction().commit();
-        //  createUserAccount("Gabi","Belabed");
+
 
     }
 
