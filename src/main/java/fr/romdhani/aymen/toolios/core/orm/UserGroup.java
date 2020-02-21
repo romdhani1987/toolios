@@ -1,90 +1,137 @@
+/**
+ * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
+ * <p>
+ * This is an automatic generated file. It will be regenerated every time
+ * you generate persistence class.
+ * <p>
+ * Modifying its content may cause the program not work, or your work may lost.
+ * <p>
+ * Licensee:
+ * License Type: Evaluation
+ * <p>
+ * Licensee:
+ * License Type: Evaluation
+ * <p>
+ * Licensee:
+ * License Type: Evaluation
+ */
+
+/**
+ * Licensee: 
+ * License Type: Evaluation
+ */
 package fr.romdhani.aymen.toolios.core.orm;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
-/**
- * @author aromdhani
- */
 @Entity
-@Table(name = "user_group")
+@org.hibernate.annotations.Proxy(lazy = false)
+@Table(name = "user_group", schema = "public")
 public class UserGroup implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+    @Column(name = "id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name = "user_group_name")
-    private String name;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_activity_id", referencedColumnName = "id")
-    private GroupActivity groupActivity;
-
-    @ManyToOne
-    @JoinColumn(name = "company_id")
+    @GeneratedValue(generator = "TOOLIOS_USER_GROUP_ID_GENERATOR")
+    @org.hibernate.annotations.GenericGenerator(name = "TOOLIOS_USER_GROUP_ID_GENERATOR", strategy = "sequence", parameters = {@org.hibernate.annotations.Parameter(name = "sequence", value = "group_id_seq")})
+    private long id;
+    @Column(name = "user_group_name", nullable = true, length = 250)
+    private String user_group_name;
+    @ManyToOne(targetEntity = GroupActivity.class, fetch = FetchType.LAZY)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+    @JoinColumns(value = {@JoinColumn(name = "group_activity_id", referencedColumnName = "id")})
+    private GroupActivity group_activity;
+    @ManyToOne(targetEntity = Company.class, fetch = FetchType.LAZY)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+    @JoinColumns(value = {@JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false)})
     private Company company;
+    @Column(name = "serialized_properties", nullable = true)
+    private String serialized_properties;
+    @OneToMany(mappedBy = "group", targetEntity = UserAccount.class)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
+    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
+    private java.util.Set ORM_user_account = new java.util.HashSet();
 
+    public UserGroup() {
+    }
 
-    @Column(name = "serialized_properties")
-    private String serializedProperties;
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    private void setId(long value) {
+        this.id = value;
     }
 
-    public String getName() {
-        return name;
+    public long getORMID() {
+        return getId();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUser_group_name() {
+        return user_group_name;
     }
 
-    public GroupActivity getGroupActivity() {
-        return groupActivity;
+    public void setUser_group_name(String value) {
+        this.user_group_name = value;
     }
 
-    public void setGroupActivity(GroupActivity groupActivity) {
-        this.groupActivity = groupActivity;
+    public String getSerialized_properties() {
+        return serialized_properties;
+    }
+
+    public void setSerialized_properties(String value) {
+        this.serialized_properties = value;
+    }
+
+    public GroupActivity getGroup_activity() {
+        return group_activity;
+    }
+
+    public void setGroup_activity(GroupActivity value) {
+
+        group_activity = value;
+
+    }
+
+    private GroupActivity getORM_Group_activity() {
+        return group_activity;
+    }
+
+    /**
+     * This method is for internal use only.
+     */
+    private void setORM_Group_activity(GroupActivity value) {
+        this.group_activity = value;
     }
 
     public Company getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompany(Company value) {
+        company = value;
     }
 
-    public String getSerializedProperties() {
-        return serializedProperties;
+    private Company getORM_Company() {
+        return company;
     }
 
-    public void setSerializedProperties(String serializedProperties) {
-        this.serializedProperties = serializedProperties;
+    /**
+     * This method is for internal use only.
+     */
+    private void setORM_Company(Company value) {
+        this.company = value;
     }
 
-    public UserGroup() {
+    private java.util.Set getORM_User_account() {
+        return ORM_user_account;
     }
 
-    public UserGroup(Company company) {
-        this.company = company;
+    private void setORM_User_account(java.util.Set value) {
+        this.ORM_user_account = value;
     }
 
-    @Override
     public String toString() {
-        return "UserGroup{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", groupActivity=" + groupActivity +
-                '}';
+        return String.valueOf(getId());
     }
+
 }
