@@ -1,17 +1,14 @@
 package fr.romdhani.aymen.toolios;
 
 
+
 import fr.romdhani.aymen.toolios.core.orm.Project;
-import fr.romdhani.aymen.toolios.core.orm.UserAccount;
-import fr.romdhani.aymen.toolios.core.orm.UserFunction;
-import org.hibernate.Transaction;
+import fr.romdhani.aymen.toolios.core.orm.User_account;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Set;
+import java.util.HashSet;
 
 
 /**
@@ -26,28 +23,14 @@ public class App {
                 .createEntityManagerFactory("toolios-db");
         em = emf.createEntityManager();
         em.getTransaction().begin();
-        UserFunction userFunction = new UserFunction();
-        userFunction.setFunction_name("software dev");
-        UserAccount userAccount = new UserAccount("test");
-        userAccount.setL_name("romdhani");
-        userAccount.setF_name("aymen");
-        userAccount.setUser_function(userFunction);
-        Project project = new Project();
-        project.setTitle("test");
-        Date date = new Date();
-        Timestamp ts = new Timestamp(date.getTime());
-        project.setCreation_timestamp(ts);
-        userAccount.setORM_Project(Set.of(project));
+       User_account userAccount=new User_account("sarah");
+        Project project=new Project("pr1");
         em.persist(project);
+        userAccount.setORM_Project(new HashSet(){
+            { add(project); }
+        });
         em.persist(userAccount);
         em.getTransaction().commit();
-
-
     }
 
-    private static void createUserAccount(String firstName,
-                                          String lastName) {
-        Transaction transaction = (Transaction) em.getTransaction();
-
-    }
-}
+ }
