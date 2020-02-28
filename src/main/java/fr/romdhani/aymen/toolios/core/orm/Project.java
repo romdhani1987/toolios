@@ -13,8 +13,6 @@
  */
 package fr.romdhani.aymen.toolios.core.orm;
 
-
-
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -23,11 +21,14 @@ import javax.persistence.*;
 public class Project implements Serializable {
 	public Project() {
 	}
-	
+
+	public Project(String title) {
+		 this.title=title;
+	}
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="TOOLIOS_PROJECT_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="TOOLIOS_PROJECT_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="project_id_seq") })	
+	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PROJECT_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PROJECT_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="project_id_seq") })	
 	private long id;
 	
 	@Column(name="title", nullable=false, length=250)	
@@ -36,16 +37,27 @@ public class Project implements Serializable {
 	@Column(name="description", nullable=true, length=1000)	
 	private String description;
 	
-	@Column(name="creation_timestamp", nullable=false, length=6)	
+	@Column(name="creation_timestamp", nullable=true, length=6)	
 	private java.sql.Timestamp creation_timestamp;
 	
 	@Column(name="lock_expiration_timestamp", nullable=true, length=6)	
 	private java.sql.Timestamp lock_expiration_timestamp;
 	
+	@ManyToOne(targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns(value={ @JoinColumn(name="supervisor_id", referencedColumnName="id") })
+	private fr.romdhani.aymen.toolios.core.orm.User_account supervisor;
+	
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@ManyToMany(mappedBy="ORM_project", targetEntity=UserAccount.class)
+	@ManyToMany(targetEntity=fr.romdhani.aymen.toolios.core.orm.Unconformity.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinTable(name="unconformity_project_map", schema="public", joinColumns={ @JoinColumn(name="project_id") }, inverseJoinColumns={ @JoinColumn(name="unconformity_id") })	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_unconformity = new java.util.HashSet();
+	
+	@ManyToMany(mappedBy="ORM_project", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();
@@ -102,6 +114,32 @@ public class Project implements Serializable {
 		return serialized_properties;
 	}
 	
+	private void setORM_Unconformity(java.util.Set value) {
+		this.ORM_unconformity = value;
+	}
+	
+	private java.util.Set getORM_Unconformity() {
+		return ORM_unconformity;
+	}
+
+	public void setSupervisor(fr.romdhani.aymen.toolios.core.orm.User_account value) {
+			}
+	
+	public fr.romdhani.aymen.toolios.core.orm.User_account getSupervisor() {
+		return supervisor;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	private void setORM_Supervisor(fr.romdhani.aymen.toolios.core.orm.User_account value) {
+		this.supervisor = value;
+	}
+	
+	private fr.romdhani.aymen.toolios.core.orm.User_account getORM_Supervisor() {
+		return supervisor;
+	}
+	
 	private void setORM_User_account(java.util.Set value) {
 		this.ORM_user_account = value;
 	}
@@ -110,8 +148,7 @@ public class Project implements Serializable {
 		return ORM_user_account;
 	}
 	
-
-	public String toString() {
+		public String toString() {
 		return String.valueOf(getId());
 	}
 	

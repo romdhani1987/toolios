@@ -22,10 +22,10 @@ import javax.persistence.*;
 public class Address implements Serializable {
 	public Address() {
 	}
-	@Column(name="id", nullable=false)	
+	@Column(name="id", nullable=false)
 	@Id	
-	@GeneratedValue(generator="TOOLIOS_ADDRESS_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="TOOLIOS_ADDRESS_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="address_id_seq") })	
+	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_ADDRESS_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_ADDRESS_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="address_id_seq") })	
 	private long id;
 	
 	@Column(name="street", nullable=true, length=250)	
@@ -40,12 +40,17 @@ public class Address implements Serializable {
 	@Column(name="country", nullable=true, length=250)	
 	private String country;
 	
-	@OneToMany(mappedBy="company_address", targetEntity=Company.class)
+	@OneToMany(mappedBy="address", targetEntity=fr.romdhani.aymen.toolios.core.orm.Company.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_company = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="user_account_address", targetEntity=UserAccount.class)
+	@OneToMany(mappedBy="address", targetEntity=fr.romdhani.aymen.toolios.core.orm.Provider_account.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_provider_account = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="address", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();
@@ -101,6 +106,14 @@ public class Address implements Serializable {
 	private java.util.Set getORM_Company() {
 		return ORM_company;
 	}
+	
+	private void setORM_Provider_account(java.util.Set value) {
+		this.ORM_provider_account = value;
+	}
+	
+	private java.util.Set getORM_Provider_account() {
+		return ORM_provider_account;
+	}
 
 	private void setORM_User_account(java.util.Set value) {
 		this.ORM_user_account = value;
@@ -109,7 +122,7 @@ public class Address implements Serializable {
 	private java.util.Set getORM_User_account() {
 		return ORM_user_account;
 	}
-	
+
 	public String toString() {
 		return String.valueOf(getId());
 	}

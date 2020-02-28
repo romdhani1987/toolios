@@ -13,6 +13,8 @@
  */
 package fr.romdhani.aymen.toolios.core.orm;
 
+import org.hibernate.annotations.ForeignKey;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -22,33 +24,42 @@ public class Company implements Serializable {
 	public Company() {
 	}
 	
+
+	private java.util.Set this_getSet (int key) {
+			return null;
+	}
+	
+	private void this_setOwner(Object owner, int key) {
+	}
+
+	
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="TOOLIOS_COMPANY_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="TOOLIOS_COMPANY_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="company_id_seq") })	
+	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_COMPANY_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_COMPANY_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="company_id_seq") })	
 	private long id;
 	
-	@Column(name="company_name", nullable=false, length=250)	
-	private String company_name;
+	@Column(name="name", nullable=false, length=250)	
+	private String name;
 	
-	@Column(name="company_serial", nullable=true)	
-	private Long company_serial;
+	@Column(name="serial", nullable=true)	
+	private Long serial;
 	
 	@Column(name="siren", nullable=true)	
 	private Long siren;
 	
-	@Column(name="siret", nullable=false)	
-	private long siret;
+	@Column(name="siret", nullable=true)	
+	private Long siret;
 	
-	@ManyToOne(targetEntity=Address.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity= Address.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="company_address_id", referencedColumnName="id") })
-	private Address company_address;
+	@JoinColumns(value={ @JoinColumn(name="address_id", referencedColumnName="id") })
+	private Address address;
 	
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@OneToMany(mappedBy="company", targetEntity=UserGroup.class)
+	@OneToMany(mappedBy="company", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_group.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_group = new java.util.HashSet();
@@ -65,24 +76,24 @@ public class Company implements Serializable {
 		return getId();
 	}
 	
-	public void setCompany_name(String value) {
-		this.company_name = value;
+	public void setName(String value) {
+		this.name = value;
 	}
 	
-	public String getCompany_name() {
-		return company_name;
+	public String getName() {
+		return name;
 	}
 	
-	public void setCompany_serial(long value) {
-		setCompany_serial(new Long(value));
+	public void setSerial(long value) {
+		setSerial(new Long(value));
 	}
 	
-	public void setCompany_serial(Long value) {
-		this.company_serial = value;
+	public void setSerial(Long value) {
+		this.serial = value;
 	}
 	
-	public Long getCompany_serial() {
-		return company_serial;
+	public Long getSerial() {
+		return serial;
 	}
 	
 	public void setSiren(long value) {
@@ -98,10 +109,14 @@ public class Company implements Serializable {
 	}
 	
 	public void setSiret(long value) {
+		setSiret(new Long(value));
+	}
+	
+	public void setSiret(Long value) {
 		this.siret = value;
 	}
 	
-	public long getSiret() {
+	public Long getSiret() {
 		return siret;
 	}
 	
@@ -113,20 +128,23 @@ public class Company implements Serializable {
 		return serialized_properties;
 	}
 	
-
-	public Address getCompany_address() {
-		return company_address;
+	public void setAddress(Address value) {
+				address=value;
+		}
+	
+	public Address getAddress() {
+		return address;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	private void setORM_Company_address(Address value) {
-		this.company_address = value;
+	private void setORM_Address(Address value) {
+		this.address = value;
 	}
 	
-	private Address getORM_Company_address() {
-		return company_address;
+	private Address getORM_Address() {
+		return address;
 	}
 	
 	private void setORM_User_group(java.util.Set value) {
@@ -136,7 +154,7 @@ public class Company implements Serializable {
 	private java.util.Set getORM_User_group() {
 		return ORM_user_group;
 	}
-
+	
 	public String toString() {
 		return String.valueOf(getId());
 	}

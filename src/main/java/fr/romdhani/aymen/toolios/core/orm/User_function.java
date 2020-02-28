@@ -1,38 +1,29 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
 
-/**
- * Licensee: 
- * License Type: Evaluation
- */
 package fr.romdhani.aymen.toolios.core.orm;
-
 
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_function", schema="public")
-public class UserFunction implements Serializable {
-	public UserFunction() {
+public class User_function implements Serializable {
+	public User_function() {
 	}
 	
+
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="TOOLIOS_USER_FUNCTION_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="TOOLIOS_USER_FUNCTION_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="address_id_seq") })	
+	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_FUNCTION_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_FUNCTION_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="user_function_id_seq") })	
 	private long id;
 	
-	@Column(name="function_name", nullable=false, length=250)	
-	private String function_name;
+	@Column(name="name", nullable=true, length=250)	
+	private String name;
 	
-	@OneToMany(mappedBy="user_function", targetEntity=UserAccount.class)
+	@Column(name="serialized_properties", nullable=true)	
+	private String serialized_properties;
+	
+	@OneToMany(mappedBy="function", targetEntity= User_account.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();
@@ -49,12 +40,20 @@ public class UserFunction implements Serializable {
 		return getId();
 	}
 	
-	public void setFunction_name(String value) {
-		this.function_name = value;
+	public void setName(String value) {
+		this.name = value;
 	}
 	
-	public String getFunction_name() {
-		return function_name;
+	public String getName() {
+		return name;
+	}
+	
+	public void setSerialized_properties(String value) {
+		this.serialized_properties = value;
+	}
+	
+	public String getSerialized_properties() {
+		return serialized_properties;
 	}
 	
 	private void setORM_User_account(java.util.Set value) {
@@ -65,7 +64,6 @@ public class UserFunction implements Serializable {
 		return ORM_user_account;
 	}
 
-	
 	public String toString() {
 		return String.valueOf(getId());
 	}
