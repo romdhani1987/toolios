@@ -253,5 +253,18 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.1.5.Final</version>
 		</dependency>
+		<!-- Hibernate ORM -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.1.5.Final</version>
+		</dependency>
+
+		<!-- C3p0 Pool for Hibernate (same version as hibernate-entitymanager dependency) -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>4.1.5.Final</version>
+		</dependency>
 	</dependencies>
 </project>

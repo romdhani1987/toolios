@@ -1,10 +1,9 @@
 package fr.romdhani.aymen.toolios.core.dao;
 
-import org.hibernate.Session;
 
 public class UserAccountDAO extends DAO<Object> {
-    public UserAccountDAO(Session session) {
-        super(session);
+    public UserAccountDAO() {
+
     }
 
     public boolean create(Object obj) {
