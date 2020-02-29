@@ -23,7 +23,7 @@ public class App {
                 .createEntityManagerFactory("toolios-db");
         em = emf.createEntityManager();
         em.getTransaction().begin();
-       UserAccount userAccount=new UserAccount("HS");
+       UserAccount userAccount=new UserAccount("rr");
         Project project=new Project("pr1");
         em.persist(project);
         userAccount.setORM_Project(new HashSet(){

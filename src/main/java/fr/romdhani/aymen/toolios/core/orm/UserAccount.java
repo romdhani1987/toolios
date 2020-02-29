@@ -14,20 +14,29 @@
 package fr.romdhani.aymen.toolios.core.orm;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_account", schema="public")
 public class UserAccount implements Serializable {
-	public UserAccount() {
+	private UserAccount() {
 	}
 	public UserAccount(String login) {
 		this.login=login;
 	}
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ACCOUNT_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ACCOUNT_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="user_account_id_seq") })	
+
+	public UserAccount(String login, String f_name, String l_name, String email, String phone_number, String creation_mode) {
+		this.login = login;
+		this.f_name = f_name;
+		this.l_name = l_name;
+		this.email = email;
+		this.phone_number = phone_number;
+		this.creation_mode = creation_mode;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="login", nullable=false, length=50)	
@@ -184,7 +193,7 @@ public class UserAccount implements Serializable {
 	public void setORM_Project(java.util.Set value) {
 		this.ORM_project = value;
 	}
-	
+
 	private java.util.Set getORM_Project() {
 		return ORM_project;
 	}
@@ -286,7 +295,27 @@ public class UserAccount implements Serializable {
 	private java.util.Set getORM_Project1() {
 		return ORM_project1;
 	}
-	
+
+	public void addProject(final Project project) {
+
+		if (project != null) {
+			Set<Project> projectSet = getORM_Project();
+			if (projectSet == null) {
+				projectSet = new HashSet<Project>();
+
+				setORM_Project(projectSet);
+			}
+			projectSet.add(project);
+		}
+	}
+
+	public void removeProject(final Project Project) {
+		final Set<Project> projectSet = getORM_Project();
+		if (projectSet != null) {
+			projectSet.remove(Project);
+		}
+	}
+
 
 	public String toString() {
 		return String.valueOf(getId());
