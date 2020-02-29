@@ -20,20 +20,27 @@ import javax.persistence.*;
 @Entity
 @Table(name="user_account", schema="public")
 public class UserAccount implements Serializable {
+	public enum UserGroupType {
+		USER, ADMIN
+	}
 	private UserAccount() {
 	}
-	public UserAccount(String login) {
-		this.login=login;
+
+	public UserAccount(String login, String password_hash) {
+		this.login = login;
+		this.password_hash = password_hash;
 	}
 
-	public UserAccount(String login, String f_name, String l_name, String email, String phone_number, String creation_mode) {
+	public UserAccount(String login, String f_name, String l_name, String email, String phone_number, String password_hash, UserRoles roles) {
 		this.login = login;
 		this.f_name = f_name;
 		this.l_name = l_name;
 		this.email = email;
 		this.phone_number = phone_number;
-		this.creation_mode = creation_mode;
+		this.password_hash = password_hash;
+		this.roles = roles;
 	}
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

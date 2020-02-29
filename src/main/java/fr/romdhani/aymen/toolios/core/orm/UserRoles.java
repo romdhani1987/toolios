@@ -6,17 +6,31 @@ package fr.romdhani.aymen.toolios.core.orm;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_roles", schema="public")
 public class UserRoles implements Serializable {
-	public UserRoles() {
+	public enum UserRole {
+		USER("user"), ADMIN("admin"), MANAGER("manager");
+        private String role;
+		UserRole(String role) {
+			this.role=role;
+		}
+		public String getRole() {
+			return role;
+		}
+		public void setRole(String role) {
+			this.role = role;
+		}
+
+	}
+	private UserRoles() {
 	}
 
-	
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ROLES_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ROLES_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="user_roles_id_seq") })	
+	public UserRoles(UserRole userRole) {
+		this.name = userRole.getRole();
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="name", nullable=false, length=250)	
