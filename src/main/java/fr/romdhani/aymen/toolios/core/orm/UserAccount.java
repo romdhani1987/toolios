@@ -323,7 +323,43 @@ public class UserAccount implements Serializable {
 		}
 	}
 
+	public void addOrder(final UserOrder userOrder) {
+		if (userOrder != null) {
+			Set<UserOrder> userOrderSet = getORM_User_order();
+			if (userOrderSet == null) {
+				userOrderSet = new HashSet<UserOrder>();
 
+				setORM_User_order(userOrderSet);
+			}
+			userOrderSet.add(userOrder);
+		}
+	}
+
+	public void removeOrder(final UserOrder userOrder) {
+		final Set<UserOrder> userOrderSet = getORM_User_order();
+		if (userOrderSet != null) {
+			userOrderSet.remove(userOrder);
+		}
+	}
+	public void addRequest(final UserRequest userRequest) {
+
+		if (userRequest != null) {
+			Set<UserRequest> userRequestSet = getORM_User_request();
+			if (userRequest == null) {
+				userRequestSet = new HashSet<UserRequest>();
+
+				setORM_User_request(userRequestSet);
+			}
+			userRequestSet.add(userRequest);
+		}
+	}
+
+	public void removeUserRequest(final UserRequest userRequest) {
+		final Set<UserRequest> UserRequestSet = getORM_User_request();
+		if (userRequest != null) {
+			UserRequestSet.remove(userRequest);
+		}
+	}
 	public String toString() {
 		return String.valueOf(getId());
 	}
