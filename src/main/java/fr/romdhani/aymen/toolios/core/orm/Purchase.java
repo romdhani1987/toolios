@@ -24,10 +24,8 @@ public class Purchase implements Serializable {
 	public Purchase() {
 	}
 
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PURCHASE_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PURCHASE_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="purchase_id_seq") })	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="title", nullable=true, length=250)	

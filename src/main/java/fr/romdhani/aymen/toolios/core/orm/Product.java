@@ -16,7 +16,6 @@ package fr.romdhani.aymen.toolios.core.orm;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="product", schema="public")
 public class Product implements Serializable {
 	public Product() {
@@ -31,12 +30,10 @@ public class Product implements Serializable {
 	private void this_setOwner(Object owner, int key) {
 
 	}
-	
 
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PRODUCT_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PRODUCT_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="product_id_seq") })	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="title", nullable=false, length=250)	

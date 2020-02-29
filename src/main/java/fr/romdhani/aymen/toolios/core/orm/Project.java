@@ -16,7 +16,6 @@ package fr.romdhani.aymen.toolios.core.orm;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="project", schema="public")
 public class Project implements Serializable {
 	public Project() {
@@ -25,10 +24,8 @@ public class Project implements Serializable {
 	public Project(String title) {
 		 this.title=title;
 	}
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PROJECT_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PROJECT_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="project_id_seq") })	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="title", nullable=false, length=250)	

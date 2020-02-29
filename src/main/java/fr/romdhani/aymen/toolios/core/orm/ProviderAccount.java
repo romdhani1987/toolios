@@ -16,16 +16,13 @@ package fr.romdhani.aymen.toolios.core.orm;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="provider_account", schema="public")
 public class ProviderAccount implements Serializable {
 	public ProviderAccount() {
 	}
 
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PROVIDER_ACCOUNT_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_PROVIDER_ACCOUNT_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="provider_account_id_seq") })	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="login", nullable=false, length=50)	

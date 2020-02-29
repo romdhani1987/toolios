@@ -4,16 +4,13 @@ package fr.romdhani.aymen.toolios.core.orm;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_action", schema="public")
 public class UserAction implements Serializable {
 	public UserAction() {
 	}
 
-	@Column(name="id", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ACTION_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ACTION_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="user_action_id_seq") })	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="title", nullable=true, length=250)	
