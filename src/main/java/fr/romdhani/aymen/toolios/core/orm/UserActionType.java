@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_action_type", schema="public")
-public class User_action_type implements Serializable {
-	public User_action_type() {
+public class UserActionType implements Serializable {
+	public UserActionType() {
 	}
 
 	@Column(name="id", nullable=false)	
@@ -19,7 +19,7 @@ public class User_action_type implements Serializable {
 	@Column(name="title", nullable=false, length=250)	
 	private String title;
 	
-	@OneToMany(mappedBy="user_action_type", targetEntity= User_action.class)
+	@OneToMany(mappedBy="user_action_type", targetEntity= UserAction.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_action = new java.util.HashSet();

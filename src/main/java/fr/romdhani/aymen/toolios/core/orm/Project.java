@@ -43,10 +43,10 @@ public class Project implements Serializable {
 	@Column(name="lock_expiration_timestamp", nullable=true, length=6)	
 	private java.sql.Timestamp lock_expiration_timestamp;
 	
-	@ManyToOne(targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity= UserAccount.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns(value={ @JoinColumn(name="supervisor_id", referencedColumnName="id") })
-	private fr.romdhani.aymen.toolios.core.orm.User_account supervisor;
+	private UserAccount supervisor;
 	
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
@@ -57,7 +57,7 @@ public class Project implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_unconformity = new java.util.HashSet();
 	
-	@ManyToMany(mappedBy="ORM_project", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
+	@ManyToMany(mappedBy="ORM_project", targetEntity= UserAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();
@@ -122,21 +122,21 @@ public class Project implements Serializable {
 		return ORM_unconformity;
 	}
 
-	public void setSupervisor(fr.romdhani.aymen.toolios.core.orm.User_account value) {
+	public void setSupervisor(UserAccount value) {
 			}
 	
-	public fr.romdhani.aymen.toolios.core.orm.User_account getSupervisor() {
+	public UserAccount getSupervisor() {
 		return supervisor;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	private void setORM_Supervisor(fr.romdhani.aymen.toolios.core.orm.User_account value) {
+	private void setORM_Supervisor(UserAccount value) {
 		this.supervisor = value;
 	}
 	
-	private fr.romdhani.aymen.toolios.core.orm.User_account getORM_Supervisor() {
+	private UserAccount getORM_Supervisor() {
 		return supervisor;
 	}
 	

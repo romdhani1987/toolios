@@ -1,31 +1,29 @@
 
 package fr.romdhani.aymen.toolios.core.orm;
 
-
-
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="user_roles", schema="public")
-public class User_roles implements Serializable {
-	public User_roles() {
+@Table(name="user_function", schema="public")
+public class UserFunction implements Serializable {
+	public UserFunction() {
 	}
-
 	
+
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ROLES_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_ROLES_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="user_roles_id_seq") })	
+	@GeneratedValue(generator="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_FUNCTION_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="FR_ROMDHANI_AYMEN_TOOLIOS_CORE_ORM_USER_FUNCTION_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="user_function_id_seq") })	
 	private long id;
 	
-	@Column(name="name", nullable=false, length=250)	
+	@Column(name="name", nullable=true, length=250)	
 	private String name;
 	
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@OneToMany(mappedBy="roles", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
+	@OneToMany(mappedBy="function", targetEntity= UserAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();
@@ -65,6 +63,7 @@ public class User_roles implements Serializable {
 	private java.util.Set getORM_User_account() {
 		return ORM_user_account;
 	}
+
 	public String toString() {
 		return String.valueOf(getId());
 	}

@@ -59,10 +59,10 @@ public class Product implements Serializable {
 	@JoinColumns(value={ @JoinColumn(name="provider_account_id", referencedColumnName="id") })
 	private fr.romdhani.aymen.toolios.core.orm.Unconformity provider_account;
 	
-	@ManyToOne(targetEntity=fr.romdhani.aymen.toolios.core.orm.Provider_account.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity= ProviderAccount.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns(value={ @JoinColumn(name="article_category_id", referencedColumnName="id") })
-	private fr.romdhani.aymen.toolios.core.orm.Provider_account article_category;
+	private ProviderAccount article_category;
 	
 	@ManyToMany(targetEntity=fr.romdhani.aymen.toolios.core.orm.Purchase.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -76,7 +76,7 @@ public class Product implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_unconformity = new java.util.HashSet();
 	
-	@ManyToMany(targetEntity=fr.romdhani.aymen.toolios.core.orm.User_order.class)	
+	@ManyToMany(targetEntity= UserOrder.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinTable(name="user_order_product_map", schema="public", joinColumns={ @JoinColumn(name="product_id") }, inverseJoinColumns={ @JoinColumn(name="user_order_id") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
@@ -183,22 +183,22 @@ public class Product implements Serializable {
 		return provider_account;
 	}
 	
-	public void setArticle_category(fr.romdhani.aymen.toolios.core.orm.Provider_account value) {
+	public void setArticle_category(ProviderAccount value) {
 		
 	}
 	
-	public fr.romdhani.aymen.toolios.core.orm.Provider_account getArticle_category() {
+	public ProviderAccount getArticle_category() {
 		return article_category;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	private void setORM_Article_category(fr.romdhani.aymen.toolios.core.orm.Provider_account value) {
+	private void setORM_Article_category(ProviderAccount value) {
 		this.article_category = value;
 	}
 	
-	private fr.romdhani.aymen.toolios.core.orm.Provider_account getORM_Article_category() {
+	private ProviderAccount getORM_Article_category() {
 		return article_category;
 	}
 	

@@ -18,8 +18,8 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_group", schema="public")
-public class User_group implements Serializable {
-	public User_group() {
+public class UserGroup implements Serializable {
+	public UserGroup() {
 	}
 	@Column(name="id", nullable=false)	
 	@Id	
@@ -38,7 +38,7 @@ public class User_group implements Serializable {
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@OneToMany(mappedBy="group", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
+	@OneToMany(mappedBy="group", targetEntity= UserAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();

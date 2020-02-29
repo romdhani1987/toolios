@@ -18,10 +18,10 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_account", schema="public")
-public class User_account implements Serializable {
-	public User_account() {
+public class UserAccount implements Serializable {
+	public UserAccount() {
 	}
-	public User_account(String login) {
+	public UserAccount(String login) {
 		this.login=login;
 	}
 	@Column(name="id", nullable=false)	
@@ -59,22 +59,22 @@ public class User_account implements Serializable {
 	@JoinColumns(value={ @JoinColumn(name="address_id", referencedColumnName="id") })
 	private Address address;
 	
-	@ManyToOne(targetEntity=fr.romdhani.aymen.toolios.core.orm.User_function.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity= UserFunction.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns(value={ @JoinColumn(name="function_id", referencedColumnName="id") })
-	private fr.romdhani.aymen.toolios.core.orm.User_function function;
+	private UserFunction function;
 	
-	@ManyToOne(targetEntity= User_roles.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity= UserRoles.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns(value={ @JoinColumn(name="roles_id", referencedColumnName="id") })
-	private User_roles roles;
+	private UserRoles roles;
 	
-	@ManyToOne(targetEntity= User_group.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity= UserGroup.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns(value={ @JoinColumn(name="group_id", referencedColumnName="id") })
-	private User_group group;
+	private UserGroup group;
 	
-	@ManyToMany(targetEntity= User_order.class)
+	@ManyToMany(targetEntity= UserOrder.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinTable(name="user_account_order_map", schema="public", joinColumns={ @JoinColumn(name="user_account_id") }, inverseJoinColumns={ @JoinColumn(name="user_order_id") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
@@ -86,7 +86,7 @@ public class User_account implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_project = new java.util.HashSet();
 	
-	@ManyToMany(mappedBy="ORM_user_account", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_request.class)	
+	@ManyToMany(mappedBy="ORM_user_account", targetEntity= UserRequest.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_request = new java.util.HashSet();
@@ -210,63 +210,63 @@ public class User_account implements Serializable {
 		return address;
 	}
 	
-	public void setFunction(fr.romdhani.aymen.toolios.core.orm.User_function value) {
+	public void setFunction(UserFunction value) {
 		function =value;
 	}
 	
-	public fr.romdhani.aymen.toolios.core.orm.User_function getFunction() {
+	public UserFunction getFunction() {
 		return function;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	private void setORM_Function(fr.romdhani.aymen.toolios.core.orm.User_function value) {
+	private void setORM_Function(UserFunction value) {
 		this.function = value;
 	}
 	
-	private fr.romdhani.aymen.toolios.core.orm.User_function getORM_Function() {
+	private UserFunction getORM_Function() {
 		return function;
 	}
 	
-	public void setRoles(User_roles value) {
+	public void setRoles(UserRoles value) {
 		roles = value
 			;
 
 	}
 	
-	public User_roles getRoles() {
+	public UserRoles getRoles() {
 		return roles;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	private void setORM_Roles(User_roles value) {
+	private void setORM_Roles(UserRoles value) {
 		this.roles = value;
 	}
 	
-	private User_roles getORM_Roles() {
+	private UserRoles getORM_Roles() {
 		return roles;
 	}
 	
-	public void setGroup(User_group value) {
+	public void setGroup(UserGroup value) {
 		group= value;
 
 	}
 	
-	public User_group getGroup() {
+	public UserGroup getGroup() {
 		return group;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	private void setORM_Group(User_group value) {
+	private void setORM_Group(UserGroup value) {
 		this.group = value;
 	}
 	
-	private User_group getORM_Group() {
+	private UserGroup getORM_Group() {
 		return group;
 	}
 	

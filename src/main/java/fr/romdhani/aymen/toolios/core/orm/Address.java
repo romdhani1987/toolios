@@ -45,12 +45,12 @@ public class Address implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_company = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="address", targetEntity=fr.romdhani.aymen.toolios.core.orm.Provider_account.class)	
+	@OneToMany(mappedBy="address", targetEntity= ProviderAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_provider_account = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="address", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
+	@OneToMany(mappedBy="address", targetEntity= UserAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();

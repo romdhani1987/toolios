@@ -3,7 +3,7 @@ package fr.romdhani.aymen.toolios;
 
 
 import fr.romdhani.aymen.toolios.core.orm.Project;
-import fr.romdhani.aymen.toolios.core.orm.User_account;
+import fr.romdhani.aymen.toolios.core.orm.UserAccount;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,7 +23,7 @@ public class App {
                 .createEntityManagerFactory("toolios-db");
         em = emf.createEntityManager();
         em.getTransaction().begin();
-       User_account userAccount=new User_account("sarah");
+       UserAccount userAccount=new UserAccount("HS");
         Project project=new Project("pr1");
         em.persist(project);
         userAccount.setORM_Project(new HashSet(){

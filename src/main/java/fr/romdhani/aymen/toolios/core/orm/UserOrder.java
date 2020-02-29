@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_order", schema="public")
-public class User_order implements Serializable {
-	public User_order() {
+public class UserOrder implements Serializable {
+	public UserOrder() {
 	}
 
 	
@@ -31,13 +31,13 @@ public class User_order implements Serializable {
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@ManyToMany(targetEntity=fr.romdhani.aymen.toolios.core.orm.User_action_purchase.class)	
+	@ManyToMany(targetEntity= UserActionPurchase.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinTable(name="user_action_purchase_order_map", schema="public", joinColumns={ @JoinColumn(name="order_id") }, inverseJoinColumns={ @JoinColumn(name="user_action_purchase_id") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_action_purchase = new java.util.HashSet();
 	
-	@ManyToMany(mappedBy="ORM_user_order", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_account.class)	
+	@ManyToMany(mappedBy="ORM_user_order", targetEntity= UserAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_account = new java.util.HashSet();

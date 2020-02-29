@@ -13,8 +13,6 @@
  */
 package fr.romdhani.aymen.toolios.core.orm;
 
-import org.hibernate.annotations.ForeignKey;
-
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -59,7 +57,7 @@ public class Company implements Serializable {
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@OneToMany(mappedBy="company", targetEntity=fr.romdhani.aymen.toolios.core.orm.User_group.class)	
+	@OneToMany(mappedBy="company", targetEntity= UserGroup.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_user_group = new java.util.HashSet();

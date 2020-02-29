@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="user_request", schema="public")
-public class User_request implements Serializable {
-	public User_request() {
+public class UserRequest implements Serializable {
+	public UserRequest() {
 	}
 
 	@Column(name="id", nullable=false)	
@@ -28,7 +28,7 @@ public class User_request implements Serializable {
 	@Column(name="serialized_properties", nullable=true)	
 	private String serialized_properties;
 	
-	@ManyToMany(targetEntity= User_account.class)
+	@ManyToMany(targetEntity= UserAccount.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinTable(name="user_account_request_map", schema="public", joinColumns={ @JoinColumn(name="user_request_id") }, inverseJoinColumns={ @JoinColumn(name="user_account_id") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
@@ -40,7 +40,7 @@ public class User_request implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_purchase = new java.util.HashSet();
 	
-	@ManyToMany(mappedBy="ORM_user_request", targetEntity= User_action.class)
+	@ManyToMany(mappedBy="ORM_user_request", targetEntity= UserAction.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_action = new java.util.HashSet();

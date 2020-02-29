@@ -18,8 +18,8 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="provider_account", schema="public")
-public class Provider_account implements Serializable {
-	public Provider_account() {
+public class ProviderAccount implements Serializable {
+	public ProviderAccount() {
 	}
 
 	@Column(name="id", nullable=false)	
