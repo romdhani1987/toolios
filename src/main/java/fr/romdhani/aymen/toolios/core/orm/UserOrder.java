@@ -1,7 +1,4 @@
-
 package fr.romdhani.aymen.toolios.core.orm;
-
-
 
 import java.io.Serializable;
 import javax.persistence.*;
