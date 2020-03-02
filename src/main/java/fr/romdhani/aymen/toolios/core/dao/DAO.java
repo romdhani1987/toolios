@@ -1,34 +1,13 @@
 package fr.romdhani.aymen.toolios.core.dao;
 
 
+import fr.romdhani.aymen.toolios.core.orm.UserAccount;
+
+import java.util.List;
+
 public abstract class DAO<T> {
 
+    public abstract List<T> getAll();
 
-     /**
-     *
-     * @param obj
-     * @return boolean
-     */
-    public abstract boolean create(T obj);
 
-    /**
-     *
-     * @param obj
-     * @return boolean
-     */
-    public abstract boolean delete(T obj);
-
-    /**
-     *
-     * @param obj
-     * @return boolean
-     */
-    public abstract boolean update(T obj);
-
-    /**
-     *
-     * @param id
-     * @return T
-     */
-    public abstract T find(int id);
 }
