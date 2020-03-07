@@ -22,7 +22,7 @@ public class UserAccountDAO extends DAO<UserAccount> {
     }
 
       public List<UserAccount> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM User e");
+        Query query = entityManager.createQuery("SELECT e FROM UserAccount e");
         return query.getResultList();
     }
 

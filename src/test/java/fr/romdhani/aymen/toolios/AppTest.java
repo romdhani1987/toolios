@@ -1,10 +1,12 @@
 package fr.romdhani.aymen.toolios;
 
 
+import fr.romdhani.aymen.toolios.core.orm.UserAccount;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.hibernate.Transaction;
+import org.junit.Assert;
 
 ;
 
@@ -33,21 +35,8 @@ public class AppTest
      * Rigourous Test :-)
      */
     public void testApp() {
-        Transaction transaction = null;
-        /*try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
-            UserAccount userAccount = new UserAccount();
-            userAccount.setfName("sarah");
-            transaction = session.beginTransaction();
-            // save the object
-            session.save(userAccount);
-            // commit transaction
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }*/
+        UserAccount userAccount = new UserAccount("aym.rom", "aymen", "rom", "toto@gmail.com", "0657883456", "manual", null);
+        Assert.assertNotNull(userAccount);
+        Assert.assertEquals(userAccount.getF_name(), "aymen");
     }
 }
