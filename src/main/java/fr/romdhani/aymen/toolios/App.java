@@ -18,7 +18,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println("Start Toolios!");
         EntityManagerFactory emf = Persistence
-                .createEntityManagerFactory("toolios-db");
+                .createEntityManagerFactory("toolios_db");
         em = emf.createEntityManager();
         em.getTransaction().begin();
         UserRoles userRoles = new UserRoles(UserRoles.UserRole.ADMIN);

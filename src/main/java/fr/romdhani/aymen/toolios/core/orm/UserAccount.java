@@ -10,7 +10,7 @@ public class UserAccount implements Serializable {
 	public enum UserGroupType {
 		USER, ADMIN
 	}
-	private UserAccount() {
+	public UserAccount() {
 	}
 
 	public UserAccount(String login, String password_hash) {

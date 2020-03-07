@@ -15,8 +15,6 @@ public class UserAccountDAO extends DAO<UserAccount> {
     private EntityManager entityManager;
 
     // standard constructors
-
-
     public Optional<UserAccount> get(long id) {
         return Optional.ofNullable(entityManager.find(UserAccount.class, id));
     }

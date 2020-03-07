@@ -19,7 +19,7 @@ public class UserRoles implements Serializable {
 		}
 
 	}
-	private UserRoles() {
+	public UserRoles() {
 	}
 
 	public UserRoles(UserRole userRole) {
