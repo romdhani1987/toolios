@@ -24,13 +24,10 @@ public class App {
         UserRoles userRoles = new UserRoles(UserRoles.UserRole.ADMIN);
         em.persist(userRoles);
         UserAccount userAccount = new UserAccount("aym.rom", "aymen", "rom", "toto@gmail.com", "0657883456", "manual", userRoles);
-        Project project = new Project("project0");
+        Project project0 = new Project("project0");
         Project project1 = new Project("project1");
         Project project2 = new Project("project2");
-        em.persist(project);
-        em.persist(project1);
-        em.persist(project2);
-        userAccount.addProject(project);
+        userAccount.addProject(project0);
         userAccount.addProject(project1);
         userAccount.addProject(project2);
         em.persist(userAccount);
